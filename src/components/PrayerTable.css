@@ -1,77 +1,91 @@
+/* ===============================
+   Section
+================================ */
 .prayer-table-section {
-    background-color: #f8f9fa;
-    /* light gray section */
-    padding: 60px 15px;
+    background-color: #f8f8f8;
+    padding: 70px 15px;
 }
 
-.prayer-table-section h2 {
-    color: #27569b;
-    /* client theme color */
-    font-weight: 600;
-    margin-bottom: 30px;
+.prayer-title {
     text-align: center;
+    margin-bottom: 40px;
+    color: #27569b;
+    font-weight: 600;
 }
 
-/* Shared table styles */
-.table {
+/* ===============================
+   Card
+================================ */
+.prayer-card {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+/* ===============================
+   Table Base
+================================ */
+.prayer-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 40px;
 }
 
-.table th,
-.table td {
+/* ===============================
+   Header
+================================ */
+.prayer-table thead th {
+    background: linear-gradient(135deg, #27569b, #1e467f);
+    color: #ffffff;
+    padding: 16px;
     text-align: center;
-    padding: 12px 8px;
-    border: 1px solid #ddd;
-    font-size: 1rem;
-}
-
-.table th {
-    background-color: #27569b;
-    /* header blue */
-    color: #fff;
-    /* white text */
     font-weight: 600;
 }
 
-.table tbody tr:nth-child(even) {
-    background-color: #e6f0fa;
-    /* alternating light blue */
-}
-
-.table tbody tr:hover {
-    background-color: #d0e4f8;
-    /* hover effect */
-}
-
-.table td {
-    color: #000;
-    /* dark text */
+/* ===============================
+   Body Cells
+================================ */
+.prayer-table tbody td {
+    padding: 16px;
+    text-align: center;
     font-weight: 500;
+    color: #333;
+    border-bottom: 1px solid #eef1f4;
 }
 
-/* Jumu'ah table specific */
-.jumuah-table th {
-    background-color: #27569b;
-    /* same blue header */
-    color: #fff;
+/* ===============================
+   Light Zebra Rows
+================================ */
+.prayer-table tbody tr:nth-child(even) {
+    background-color: #f5f9fe;
 }
 
-.jumuah-table tbody tr:nth-child(even) {
-    background-color: #e6f0fa;
+/* ===============================
+   Hover Effect
+================================ */
+.prayer-table tbody tr:hover {
+    background-color: #e9f2fc;
+    transition: background-color 0.2s ease;
 }
 
-.jumuah-table tbody tr:hover {
-    background-color: #d0e4f8;
+/* ===============================
+   Prayer Name Emphasis
+================================ */
+.prayer-name {
+    font-weight: 600;
+    color: #27569b;
 }
 
-.jumuah-table td {
-    color: #000;
-    font-weight: 500;
-}
+/* ===============================
+   Responsive
+================================ */
+@media (max-width: 768px) {
 
-/* Responsive table wrapper */
-.table-responsive {
-    overflow-x: auto;
+    .prayer-table thead th,
+    .prayer-table tbody td {
+        padding: 12px 8px;
+        font-size: 0.9rem;
+    }
 }

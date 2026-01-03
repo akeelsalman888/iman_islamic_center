@@ -1,28 +1,12 @@
 import React from "react";
-import "./PrayerTable.css";
 
 function PrayerTable() {
-    const dailyPrayers = [
-        { prayer: "Fajr", adhaan: "06:17 AM", iqamah: "06:30 AM" },
-        { prayer: "Sunrise", adhaan: "07:29 AM", iqamah: "" },
-        { prayer: "Dhuhr", adhaan: "12:31 PM", iqamah: "02:00 PM" },
-        { prayer: "Asr", adhaan: "03:14 PM", iqamah: "04:00 PM" },
-        { prayer: "Maghrib", adhaan: "05:32 PM", iqamah: "05:42 PM" },
-        { prayer: "Isha", adhaan: "06:45 PM", iqamah: "08:00 PM" },
-    ];
-
-    const jumuah = [
-        { prayer: "1st Jumuah", khutba: "01:00 PM" },
-        { prayer: "2nd Jumuah", khutba: "02:30 PM" },
-    ];
-
     return (
-        <section className="prayer-table-section" id="prayer">
-            <h2>Prayer Times</h2>
+        <section className="prayer-table-section">
+            <h2 className="prayer-title">Prayer Times</h2>
 
-            {/* Daily Prayers Table */}
-            <div className="table-responsive">
-                <table className="table daily-table">
+            <div className="prayer-card">
+                <table className="prayer-table">
                     <thead>
                         <tr>
                             <th>Prayer</th>
@@ -30,34 +14,33 @@ function PrayerTable() {
                             <th>Iqamah</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        {dailyPrayers.map((p, index) => (
-                            <tr key={index}>
-                                <td>{p.prayer}</td>
-                                <td>{p.adhaan}</td>
-                                <td>{p.iqamah}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
 
-            {/* Jumu'ah Table */}
-            <div className="table-responsive">
-                <table className="table jumuah-table">
-                    <thead>
-                        <tr>
-                            <th>Jumu'ah</th>
-                            <th>Khutba</th>
-                        </tr>
-                    </thead>
                     <tbody>
-                        {jumuah.map((j, index) => (
-                            <tr key={index}>
-                                <td>{j.prayer}</td>
-                                <td>{j.khutba}</td>
-                            </tr>
-                        ))}
+                        <tr>
+                            <td className="prayer-name">Fajr</td>
+                            <td>06:17 AM</td>
+                            <td>06:30 AM</td>
+                        </tr>
+                        <tr>
+                            <td className="prayer-name">Dhuhr</td>
+                            <td>12:31 PM</td>
+                            <td>02:00 PM</td>
+                        </tr>
+                        <tr>
+                            <td className="prayer-name">Asr</td>
+                            <td>03:45 PM</td>
+                            <td>04:15 PM</td>
+                        </tr>
+                        <tr>
+                            <td className="prayer-name">Maghrib</td>
+                            <td>05:20 PM</td>
+                            <td>05:30 PM</td>
+                        </tr>
+                        <tr>
+                            <td className="prayer-name">Isha</td>
+                            <td>06:45 PM</td>
+                            <td>07:00 PM</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

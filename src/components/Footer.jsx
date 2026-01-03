@@ -3,15 +3,20 @@ import "./Footer.css";
 
 function Footer() {
     return (
-        <footer className="footer-section text-white py-4" id="footer">
+        <footer className="footer-section py-4" id="footer">
             <div className="container-fluid px-3">
                 <div className="row">
+                    {/* Mission */}
                     <div className="col-md-4 mb-3">
-                        <h5>Iman Islamic Center</h5>
-                        <p>Serving the Lincoln, NE community with religious guidance, education, and community programs.</p>
+                        <h5 className="text-white">Iman Islamic Center</h5>
+                        <p className="text-light">
+                            Serving the Lincoln, NE community with religious guidance, education, and community programs.
+                        </p>
                     </div>
+
+                    {/* Quick Links */}
                     <div className="col-md-4 mb-3">
-                        <h5>Quick Links</h5>
+                        <h5 className="text-white">Quick Links</h5>
                         <ul className="list-unstyled">
                             <li><a href="/" className="footer-link">Home</a></li>
                             <li><a href="#prayer" className="footer-link">Prayer Times</a></li>
@@ -19,11 +24,13 @@ function Footer() {
                             <li><a href="#footer" className="footer-link">Contact</a></li>
                         </ul>
                     </div>
+
+                    {/* Contact Info */}
                     <div className="col-md-4 mb-3">
-                        <h5>Contact Us</h5>
-                        <p>Email: info@imanislamic.org</p>
-                        <p>Phone: (402) 555-1234</p>
-                        <p>Address: 123 Faith St, Lincoln, NE</p>
+                        <h5 className="text-white">Contact Us</h5>
+                        <p className="text-warning mb-1">Email: info@imanislamic.org</p>
+                        <p className="text-warning mb-1">Phone: (402) 730-3883</p>
+                        <p className="text-warning">Address: 901 w dawes avenue, Lincoln, NE</p>
                         <div className="social-links mt-2">
                             <a href="#" className="footer-link me-2">Facebook</a>
                             <a href="#" className="footer-link me-2">Twitter</a>
@@ -31,7 +38,9 @@ function Footer() {
                         </div>
                     </div>
                 </div>
-                <div className="text-center mt-3">
+
+                {/* Copyright */}
+                <div className="text-center mt-3 text-white">
                     &copy; {new Date().getFullYear()} Iman Islamic Center. All Rights Reserved.
                 </div>
             </div>

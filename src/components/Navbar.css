@@ -1,34 +1,161 @@
-.navbar {
-    background-color: #27569b !important;
-    /* client primary color */
+/* =========================
+   Sticky + Dark Navbar
+========================= */
+.custom-navbar {
+  background-color: #1e3c72 !important;
+  /* darker, modern blue */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  width: 100%;
 }
 
-.nav-link {
-    color: #fff !important;
-    font-weight: 500;
+/* =========================
+   Logo + Brand
+========================= */
+.navbar-logo {
+  height: 70px;
+  /* bigger logo */
+  width: auto;
+  border-radius: 12px;
+  border: 2px solid #fff;
+  /* subtle border */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.nav-link:hover {
-    color: #a1c0e8 !important;
-    /* lighter blue hover */
+.navbar-logo:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
 }
 
-.nav-link.active {
-    color: #a1c0e8 !important;
-    font-weight: bold;
+.navbar-brand-text {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+  /* more modern, clear */
 }
 
-.btn-light {
-    color: #27569b;
-    /* client color text */
-    background-color: #fff;
-    font-weight: bold;
-    transition: all 0.3s ease;
+/* =========================
+   Navbar links
+========================= */
+.navbar-nav .nav-link {
+  color: #fff !important;
+  font-weight: 500;
+  margin-right: 1rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  position: relative;
+  transition: color 0.25s ease;
 }
 
-.btn-light:hover {
-    color: #fff;
-    background-color: #a1c0e8;
-    /* lighter blue hover */
-    transform: translateY(-2px);
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: #ffb733 !important;
+}
+
+/* =========================
+   Donate button
+========================= */
+.btn-donate {
+  background: linear-gradient(135deg, #ff9f00, #ffb733);
+  color: #fff;
+  font-weight: 600;
+  padding: 8px 22px;
+  border-radius: 999px;
+  border: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-donate:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(255, 159, 0, 0.5);
+  color: #fff;
+}
+
+/* =========================
+   Social + Phone icons
+========================= */
+.social-icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 16px;
+  color: #fff;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.social-icon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Social brand colors */
+.social-icon.facebook {
+  background-color: #3b5998;
+}
+
+.social-icon.twitter {
+  background-color: #1da1f2;
+}
+
+.social-icon.youtube {
+  background-color: #e53935;
+}
+
+.social-icon.linkedin {
+  background-color: #0077b5;
+}
+
+/* Phone icon */
+.social-icon.phone-icon {
+  background-color: #ffb733;
+  color: #fff;
+}
+
+/* Phone wrapper next to logo */
+.phone-wrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.phone-number {
+  color: #fff;
+  font-weight: 600;
+  margin-left: 5px;
+  font-size: 1.1rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+/* Right items wrapper */
+.navbar-right-items {
+  display: flex;
+  align-items: center;
+}
+
+/* =========================
+   Responsive tweaks
+========================= */
+@media (max-width: 991px) {
+
+  .social-icons,
+  .navbar-right-items {
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .phone-number {
+    font-size: 1rem;
+  }
+
+  .navbar-logo {
+    height: 60px;
+  }
+
+  .navbar-brand-text {
+    font-size: 1.3rem;
+  }
 }

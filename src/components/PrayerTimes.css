@@ -1,82 +1,99 @@
+/* ===============================
+   Prayer Section
+================================ */
 .prayer-section {
-    background-color: #f8f9fa;
-    padding: 60px 15px;
-    text-align: center;
+  background-color: #f8f9fa;
+  padding: 60px 15px;
+  text-align: center;
 }
 
 .prayer-heading {
-    color: #27569b;
-    font-weight: 600;
-    margin-bottom: 15px;
+  color: #27569b;
+  font-weight: 600;
+  margin-bottom: 15px;
 }
 
-/* Dates */
+/* ===============================
+   Dates
+================================ */
 .prayer-date-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
 }
 
 .prayer-date-hijri {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #27569b;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #27569b;
 }
 
 .prayer-date-greg {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: #333;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #333;
 }
 
-/* Prevent Bootstrap / icon CSS from injecting characters */
-.prayer-date-container span::before {
-    content: none !important;
-    display: none !important;
-}
-
-/* Tables */
+/* ===============================
+   Tables (Bootstrap-safe)
+================================ */
 .table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 40px;
+  width: 100%;
+  margin-bottom: 40px;
+  border-collapse: collapse;
 }
 
-.table th,
-.table td {
-    text-align: center;
-    padding: 12px 8px;
-    border: 1px solid #ddd;
-    font-size: 1rem;
+/* Table Header */
+.table thead th {
+  background-color: #27569b;
+  color: #ffffff;
+  font-weight: 600;
+  text-align: center;
+  padding: 14px 10px;
+  border: 1px solid #dee2e6;
 }
 
-.table th {
-    background-color: #27569b;
-    color: #fff;
-    font-weight: 600;
+/* Table Cells */
+.table tbody td {
+  text-align: center;
+  padding: 12px 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #000;
+  border: 1px solid #dee2e6;
 }
 
-.table tbody tr:nth-child(even) {
-    background-color: #e6f0fa;
+/* ===============================
+   Darker Zebra Theme
+================================ */
+.table tbody tr:nth-child(even) > td {
+  background-color: #d6e6f7 !important;
 }
 
-.table tbody tr:hover {
-    background-color: #d0e4f8;
+/* Hover Effect */
+.table tbody tr:hover > td {
+  background-color: #c2daf3 !important;
+  transition: background-color 0.2s ease;
 }
 
-.table td {
-    color: #000;
-    font-weight: 500;
+/* ===============================
+   Jumu'ah Table
+================================ */
+.jumuah-table thead th {
+  background-color: #27569b;
 }
 
-/* Jumu'ah */
-.jumuah-table th {
-    background-color: #27569b;
-}
-
-/* Responsive */
+/* ===============================
+   Responsive
+================================ */
 .table-responsive {
-    overflow-x: auto;
+  overflow-x: auto;
+}
+
+/* Remove any unwanted pseudo elements */
+.prayer-date-hijri::before,
+.prayer-date-greg::before {
+  content: none !important;
 }
