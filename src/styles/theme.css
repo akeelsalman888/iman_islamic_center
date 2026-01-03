@@ -1,0 +1,41 @@
+:root {
+  --primary-green: #1E5631;
+  --secondary-green: #A9C5A6;
+  --background-color: #F8F8F8;
+  --text-color: #333333;
+  --button-bg: #1E5631;
+  --button-text: #FFFFFF;
+}
+
+/* Body Background */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-green);
+  color: var(--button-text);
+}
+
+/* Navbar Brand */
+.navbar-brand {
+  color: var(--primary-green);
+  font-weight: bold;
+}
+
+/* Links */
+.nav-link {
+  color: var(--text-color);
+}
+
+.nav-link:hover {
+  color: var(--primary-green);
+}

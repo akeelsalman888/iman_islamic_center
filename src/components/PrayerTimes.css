@@ -1,0 +1,82 @@
+.prayer-section {
+    background-color: #f8f9fa;
+    padding: 60px 15px;
+    text-align: center;
+}
+
+.prayer-heading {
+    color: #27569b;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* Dates */
+.prayer-date-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.prayer-date-hijri {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #27569b;
+}
+
+.prayer-date-greg {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Prevent Bootstrap / icon CSS from injecting characters */
+.prayer-date-container span::before {
+    content: none !important;
+    display: none !important;
+}
+
+/* Tables */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+}
+
+.table th,
+.table td {
+    text-align: center;
+    padding: 12px 8px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+}
+
+.table th {
+    background-color: #27569b;
+    color: #fff;
+    font-weight: 600;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #e6f0fa;
+}
+
+.table tbody tr:hover {
+    background-color: #d0e4f8;
+}
+
+.table td {
+    color: #000;
+    font-weight: 500;
+}
+
+/* Jumu'ah */
+.jumuah-table th {
+    background-color: #27569b;
+}
+
+/* Responsive */
+.table-responsive {
+    overflow-x: auto;
+}

@@ -1,0 +1,22 @@
+.footer-section {
+    background-color: #27569b;
+    /* client blue */
+    color: #fff;
+    padding: 40px 0;
+}
+
+.footer-link {
+    color: #fff;
+}
+
+.footer-link:hover {
+    color: #a1c0e8;
+    /* lighter blue hover */
+    text-decoration: underline;
+}
+
+.footer-section h5 {
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 15px;
+}

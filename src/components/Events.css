@@ -1,0 +1,26 @@
+.event-card {
+    background-color: #a1c0e8;
+    /* light blue background */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    color: #27569b;
+    /* primary text color */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.event-card h3 {
+    color: #27569b;
+    font-weight: 600;
+}
+
+.event-card p {
+    color: #000;
+    /* ensures body text visible on light blue */
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+}

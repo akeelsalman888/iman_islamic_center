@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "title": "Quran Memorization and Teaching Sessions (Quran Carriers)",
+        "description": "The Quran memorization halaqas run three days a week for two hours each day. Both boys and girls, from children to youth, have the opportunity to memorize the entire Holy Quran and learn the fundamentals of Islam. All sessions are led by trained teachers."
+    },
+    {
+        "id": 2,
+        "title": "Part-Time Daycare Services (Seeds of Faith)",
+        "description": "Providing a nurturing and religious environment for children while supporting working parents."
+    },
+    {
+        "id": 3,
+        "title": "Marriage Contract",
+        "description": "Initiation of Marriage contracts based on the Holy Quran and the Sunnah of the Prophet (ﷺ)"
+    },
+    {
+        "id": 4,
+        "title": "Educational Programs",
+        "description": "Engaging the community with Quran sessions and lectures."
+    }
+]

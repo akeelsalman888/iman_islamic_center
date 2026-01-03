@@ -1,0 +1,252 @@
+/* ------------------ Global Reset ------------------ */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
+  background-color: #fff;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ------------------ Typography ------------------ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  color: #27569b;
+  /* client primary color */
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* ------------------ Sections ------------------ */
+section {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+/* ------------------ Navbar ------------------ */
+.navbar {
+  background-color: #27569b !important;
+  /* client color */
+}
+
+.nav-link {
+  color: #fff !important;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: #a1c0e8 !important;
+  /* lighter blue hover */
+}
+
+.nav-link.active {
+  color: #a1c0e8 !important;
+  font-weight: bold;
+}
+
+.btn-light {
+  color: #27569b;
+  /* client color */
+  background-color: #fff;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-light:hover {
+  background-color: #a1c0e8;
+  /* lighter blue hover */
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* ------------------ Hero Section ------------------ */
+.hero-section {
+  height: 60vh;
+  width: 100%;
+  position: relative;
+  color: white;
+  background: url('https://images.unsplash.com/photo-1588776814546-49b7fc1f64c6?auto=format&fit=crop&w=1470&q=80') no-repeat center center;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(39, 86, 155, 0.6);
+  /* blue overlay */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0 15px;
+  text-align: center;
+  animation: fadeIn 1.5s ease-out;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+}
+
+/* ------------------ Donate Section ------------------ */
+.donate-section {
+  height: 50vh;
+  position: relative;
+  background: url('https://images.unsplash.com/photo-1606788075761-80255f09f70d?auto=format&fit=crop&w=1470&q=80') no-repeat center center;
+  background-size: cover;
+  width: 100%;
+  color: white;
+  overflow: hidden;
+}
+
+.donate-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(39, 86, 155, 0.7);
+  /* blue overlay */
+  z-index: 1;
+}
+
+.donate-content {
+  position: relative;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 700px;
+  padding: 0 15px;
+  text-align: center;
+  animation: fadeIn 1.5s ease-out;
+}
+
+.donate-content h2 {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+}
+
+.donate-content p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+/* ------------------ Event Cards ------------------ */
+.event-card {
+  background-color: #a1c0e8;
+  /* light blue card */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  color: #27569b;
+  /* client primary color */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* ------------------ Prayer Table ------------------ */
+.prayer-table-section {
+  background-color: #F8F8F8;
+}
+
+/* ------------------ Footer ------------------ */
+.footer-section {
+  background-color: #27569b;
+  /* client color */
+  color: #fff;
+}
+
+.footer-link {
+  color: #fff;
+}
+
+.footer-link:hover {
+  color: #a1c0e8;
+  /* lighter hover */
+  text-decoration: underline;
+}
+
+/* ------------------ Animations ------------------ */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ------------------ Responsive Tweaks ------------------ */
+@media (max-width: 768px) {
+
+  .hero-content h1,
+  .donate-content h2 {
+    font-size: 2rem;
+  }
+
+  section {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-content,
+.donate-content {
+  animation: fadeIn 1.5s ease-out;
+}
