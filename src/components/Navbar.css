@@ -366,7 +366,9 @@
   .social-icons,
   .navbar-right-items {
     margin-top: 1rem;
-    flex-wrap: wrap;
+    display: flex !important;
+    flex-direction: row !important;
     justify-content: center;
+    width: 100%;
   }
 }
