@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn, FaPhoneAlt, FaCommentDots } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import logo from "../assets/logo.png";
 import "./Navbar.css";
 
@@ -101,7 +101,7 @@ function Navbar() {
                         <div className="pod-divider d-none d-lg-block"></div>
                         <div className="pod-item ms-lg-3 mt-2 mt-lg-0">
                             <Link to="/contact" className="contact-link-modern" onClick={closeMenu}>
-                                <FaCommentDots className="me-2" />
+                                <FaEnvelope className="me-2" />
                                 <span>Contact Us</span>
                             </Link>
                         </div>
