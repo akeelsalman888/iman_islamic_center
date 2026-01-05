@@ -8,6 +8,8 @@ import Events from "./components/Events";
 import Donate from "./components/Donate";
 import PrayerTimes from "./components/PrayerTimes";
 import Contact from "./components/Contact";
+import Reservation from "./components/Reservation";
+import ContactPage from "./components/ContactPage";
 
 function App() {
   return (
@@ -30,10 +32,11 @@ function App() {
                 </div>
               </div>
               <Donate />
-              <Contact />
+              <Reservation />
             </>
           }
         />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/event/:id" element={<Events />} />
       </Routes>
       <Footer />

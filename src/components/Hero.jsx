@@ -1,13 +1,13 @@
 import React from "react";
-import heroImage from "../assets/hero.jpg";
+import heroImage from "../assets/hero.png";
 import "./Hero.css";
 
 function Hero() {
     return (
         <section className="hero-section d-flex align-items-center justify-content-center">
             <img
-                src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1920&q=80"
-                alt="Grand Mosque with Domes"
+                src={heroImage}
+                alt="Iman Islamic Center Hero"
                 className="hero-bg-image"
             />
 

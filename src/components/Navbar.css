@@ -18,14 +18,20 @@
   transition: transform 0.3s ease;
 
   /* Extremely large logo scale */
-  transform: scale(3.0);
+  transform: scale(2.8);
   transform-origin: left center;
-  margin-right: 120px;
-  /* Large space for the extreme scale */
+  margin-right: 45px;
+  /* Optimized breathing room between logo and text */
 }
 
 .navbar-logo:hover {
-  transform: scale(3.1);
+  transform: scale(2.9);
+}
+
+.brand-text-wrapper {
+  line-height: 1.1;
+  margin-left: 0;
+  /* Locked to the logo's scaled margin */
 }
 
 .navbar-brand-text {
@@ -34,11 +40,19 @@
   font-size: 1.3rem;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  margin-left: 60px;
   text-shadow: 0.5px 0px 0px #000, -0.5px 0px 0px #000;
-  /* Simulating extra thickness */
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+}
+
+.navbar-brand-location {
+  color: #27569b !important;
+  /* Using the primary blue */
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 2px;
+  opacity: 0.9;
 }
 
 /* =========================
@@ -132,19 +146,66 @@
   color: #fff;
 }
 
-/* Phone wrapper next to logo */
-.phone-wrapper {
+/* Modern Independent Pod (Phone + Contact) */
+.middle-phone-modern {
   display: flex;
   align-items: center;
-  margin-left: 10px;
+  margin-left: 0;
+  margin-right: 8px;
+  /* Very tight placement next to social icons */
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  padding: 6px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  flex-shrink: 0;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.middle-phone-modern:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.pod-item {
+  display: flex;
+  align-items: center;
+}
+
+.pod-divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 0 5px;
 }
 
 .phone-number {
   color: #000;
-  font-weight: 600;
-  margin-left: 5px;
+  font-weight: 700;
+  margin-left: 10px;
+  font-size: 1rem;
+  letter-spacing: 0.2px;
+}
+
+.contact-link-modern {
+  color: #27569b !important;
+  font-weight: 800;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.contact-link-modern:hover {
+  color: #1e467f !important;
+}
+
+.contact-link-modern svg {
   font-size: 1.1rem;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
 }
 
 /* Right items wrapper */

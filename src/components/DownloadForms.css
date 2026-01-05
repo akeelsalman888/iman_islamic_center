@@ -1,0 +1,108 @@
+.forms-section {
+    padding: 80px 0;
+    background-color: #ffffff;
+}
+
+.section-header {
+    margin-bottom: 50px;
+}
+
+.section-title {
+    color: #27569b;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.section-subtitle {
+    color: #555;
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+}
+
+.form-download-card {
+    background: #f8f9fa;
+    border-radius: 20px;
+    padding: 30px;
+    height: 100%;
+    transition: all 0.3s ease;
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.form-download-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    background: #fff;
+    border-color: #87CEEB;
+}
+
+.card-icon {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.pdf-icon {
+    color: #e74c3c;
+}
+
+.word-icon {
+    color: #2980b9;
+}
+
+.form-name {
+    color: #27569b;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.form-desc {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.file-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #eee;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.btn-download-form {
+    background: #27569b;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    border: none;
+    width: 100%;
+}
+
+.btn-download-form:hover {
+    background: #87CEEB;
+    color: #000;
+    box-shadow: 0 10px 20px rgba(135, 206, 235, 0.3);
+}
+
+@media (max-width: 768px) {
+    .form-download-card {
+        padding: 20px;
+    }
+}
