@@ -86,12 +86,12 @@ function Navbar() {
                         </li>
 
                         <li className="nav-item">
-                            <a href="#donate" className="btn btn-donate ms-lg-3 my-2 my-lg-0" onClick={closeMenu}>Donate</a>
+                            <a href="#donate" className="btn btn-donate ms-lg-2 my-2 my-lg-0" onClick={closeMenu}>Donate</a>
                         </li>
                     </ul>
 
                     {/* Actions Pod */}
-                    <div className="phone-wrapper middle-phone-modern mt-3 mt-lg-0 ms-lg-4">
+                    <div className="phone-wrapper middle-phone-modern mt-3 mt-lg-0 ms-lg-2">
                         <div className="pod-item me-3">
                             <a href="tel:4027303883" className="social-icon phone-icon">
                                 <FaPhoneAlt />

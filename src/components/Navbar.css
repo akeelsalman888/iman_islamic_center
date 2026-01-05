@@ -12,6 +12,11 @@
 /* =========================
    Logo + Brand
 ========================= */
+.custom-navbar .container-fluid {
+  padding-right: 1rem !important;
+  /* Reduce outer padding to give more room */
+}
+
 .navbar-logo {
   height: 60px;
   width: auto;
@@ -62,7 +67,10 @@
   color: #000 !important;
   font-weight: 700;
   /* Bold for clarity */
-  margin-right: 1rem;
+  margin-right: 0.5rem;
+  /* Tightened from 1rem to fit on one line */
+  font-size: 1.05rem;
+  /* Slightly larger as requested */
   text-shadow: none;
   /* Removed shadow for crisp text */
   position: relative;
@@ -155,8 +163,8 @@
   /* Very tight placement next to social icons */
   background: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(10px);
-  padding: 4px 18px;
-  /* Slightly more compact for better fit */
+  padding: 4px 14px;
+  /* Even more compact to fit on one line */
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.7);
   flex-shrink: 0;
