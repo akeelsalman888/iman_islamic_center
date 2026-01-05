@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import Events from "./components/Events";
 import Donate from "./components/Donate";
-import PrayerTimes from "./components/PrayerTimes"; 
+import PrayerTimes from "./components/PrayerTimes";
 
 function App() {
   return (
@@ -18,8 +18,16 @@ function App() {
           element={
             <>
               <Hero />
-              <PrayerTimes /> {/* <-- Use the new component */}
-              <Events />
+              <div className="container-fluid my-5">
+                <div className="row">
+                  <div className="col-lg-8">
+                    <Events />
+                  </div>
+                  <div className="col-lg-4">
+                    <PrayerTimes />
+                  </div>
+                </div>
+              </div>
               <Donate />
             </>
           }

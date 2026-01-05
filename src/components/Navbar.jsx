@@ -6,7 +6,7 @@ import "./Navbar.css";
 
 function Navbar() {
     return (
-        <nav className="navbar navbar-expand-lg custom-navbar sticky-top py-3">
+        <nav className="navbar navbar-expand-lg custom-navbar fixed-top py-3">
             <div className="container d-flex align-items-center justify-content-between">
 
                 {/* Logo + Phone */}
@@ -41,9 +41,42 @@ function Navbar() {
                 {/* Navbar Links + Donate + Socials */}
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav ms-auto align-items-center">
-                        <li className="nav-item"><a href="#home" className="nav-link">Home</a></li>
-                        <li className="nav-item"><a href="#prayer" className="nav-link">Prayer Times</a></li>
-                        <li className="nav-item"><a href="#events" className="nav-link">Events</a></li>
+                        {/* Home Dropdown */}
+                        <li className="nav-item dropdown">
+                            <Link to="/" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Home
+                            </Link>
+                            <ul className="dropdown-menu">
+                                <li><Link className="dropdown-item" to="/test1">test1</Link></li>
+                                <li><Link className="dropdown-item" to="/test2">test2</Link></li>
+                                <li><Link className="dropdown-item" to="/test3">test3</Link></li>
+                            </ul>
+                        </li>
+
+                        {/* Prayer Times Dropdown */}
+                        <li className="nav-item dropdown">
+                            <a href="#prayer" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Prayer Times
+                            </a>
+                            <ul className="dropdown-menu">
+                                <li><a className="dropdown-item" href="#test1">test1</a></li>
+                                <li><a className="dropdown-item" href="#test2">test2</a></li>
+                                <li><a className="dropdown-item" href="#test3">test3</a></li>
+                            </ul>
+                        </li>
+
+                        {/* Events Dropdown */}
+                        <li className="nav-item dropdown">
+                            <a href="#events" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Events
+                            </a>
+                            <ul className="dropdown-menu">
+                                <li><a className="dropdown-item" href="#test1">test1</a></li>
+                                <li><a className="dropdown-item" href="#test2">test2</a></li>
+                                <li><a className="dropdown-item" href="#test3">test3</a></li>
+                            </ul>
+                        </li>
+
                         <li className="nav-item"><a href="#donate" className="btn btn-donate ms-3">Donate</a></li>
                     </ul>
 

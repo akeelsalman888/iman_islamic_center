@@ -11,10 +11,6 @@ body {
   font-family: 'Poppins', sans-serif;
   scroll-behavior: smooth;
   background-color: #fff;
-
-  /* Extra padding to prevent content hiding under fixed navbar */
-  padding-top: 70px;
-  /* Adjust to your navbar height */
 }
 
 a {
@@ -50,17 +46,8 @@ section {
 }
 
 /* ------------------ Navbar ------------------ */
-.navbar {
-  background-color: #27569b !important;
-  position: fixed !important;
-  /* Make it sticky/fixed */
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 9999;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  /* optional shadow */
-}
+/* ------------------ Navbar ------------------ */
+/* Navbar styling is handled in components/Navbar.css */
 
 .nav-link {
   color: #fff !important;
@@ -90,46 +77,8 @@ section {
 }
 
 /* ------------------ Hero Section ------------------ */
-.hero-section {
-  height: 60vh;
-  width: 100%;
-  position: relative;
-  color: white;
-  background: url('https://images.unsplash.com/photo-1588776814546-49b7fc1f64c6?auto=format&fit=crop&w=1470&q=80') no-repeat center center;
-  background-size: cover;
-  overflow: hidden;
-}
-
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(39, 86, 155, 0.6);
-  z-index: 1;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 700px;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 0 15px;
-  text-align: center;
-  animation: fadeIn 1.5s ease-out;
-}
-
-.hero-content h1 {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 0.75rem;
-}
-
-.hero-content p {
-  font-size: 1.1rem;
-}
+/* ------------------ Hero Section ------------------ */
+/* Hero styling is handled in components/Hero.css */
 
 /* ------------------ Donate Section ------------------ */
 .donate-section {

@@ -1,23 +1,28 @@
 .hero-section {
   height: 60vh;
   width: 100%;
+  margin-top: 100px;
+  /* Offset for fixed navbar */
   position: relative;
   color: #fff;
   /* text white for readability */
-  background: url('https://images.unsplash.com/photo-1588776814546-49b7fc1f64c6?auto=format&fit=crop&w=1470&q=80') no-repeat center center;
-  background-size: cover;
+  /* background removed - handled in JSX for reliable updating */
   overflow: hidden;
 }
 
-.hero-overlay {
+.hero-bg-image {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(39, 86, 155, 0.6);
-  /* semi-transparent blue overlay */
-  z-index: 1;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-overlay {
+  display: none;
+  /* Removed overlay for clear brightness */
 }
 
 .hero-content {
@@ -33,8 +38,9 @@
 
 .hero-content h1,
 .hero-content p {
-  color: #fff;
-  /* ensures text is readable on overlay */
+  color: #1E2A38;
+  /* Dark text for contrast against white mosque */
+  text-shadow: none;
 }
 
 .hero-content h1 {

@@ -3,7 +3,7 @@
 ================================ */
 .prayer-section {
   background-color: #f8f9fa;
-  padding: 60px 15px;
+  padding: 20px 10px;
   text-align: center;
 }
 
@@ -25,15 +25,15 @@
 }
 
 .prayer-date-hijri {
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 1.1rem;
+  font-weight: 700;
   color: #27569b;
 }
 
 .prayer-date-greg {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #333;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #000;
 }
 
 /* ===============================
@@ -68,12 +68,12 @@
 /* ===============================
    Darker Zebra Theme
 ================================ */
-.table tbody tr:nth-child(even) > td {
+.table tbody tr:nth-child(even)>td {
   background-color: #d6e6f7 !important;
 }
 
 /* Hover Effect */
-.table tbody tr:hover > td {
+.table tbody tr:hover>td {
   background-color: #c2daf3 !important;
   transition: background-color 0.2s ease;
 }

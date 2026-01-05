@@ -41,8 +41,8 @@ const events = [
 
 function Events() {
     return (
-        <section className="events-section py-5" id="events">
-            <div className="container">
+        <section id="events">
+            <div className="w-100 px-3">
                 <h2 className="section-heading text-center mb-4">Announcements & Events</h2>
                 <div className="row">
                     {events.map((event, index) => (

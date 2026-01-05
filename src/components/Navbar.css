@@ -2,8 +2,8 @@
    Sticky + Dark Navbar
 ========================= */
 .custom-navbar {
-  background-color: #1e3c72 !important;
-  /* darker, modern blue */
+  background-color: #87CEEB !important;
+  /* Light/Sky Blue */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   z-index: 999;
   width: 100%;
@@ -13,44 +13,52 @@
    Logo + Brand
 ========================= */
 .navbar-logo {
-  height: 70px;
-  /* bigger logo */
+  height: 60px;
   width: auto;
-  border-radius: 12px;
-  border: 2px solid #fff;
-  /* subtle border */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease;
+
+  /* Extremely large logo scale */
+  transform: scale(3.0);
+  transform-origin: left center;
+  margin-right: 120px;
+  /* Large space for the extreme scale */
 }
 
 .navbar-logo:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+  transform: scale(3.1);
 }
 
 .navbar-brand-text {
-  color: #fff;
-  font-weight: 700;
-  font-size: 1.5rem;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
-  /* more modern, clear */
+  color: #000000 !important;
+  font-weight: 900;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-left: 60px;
+  text-shadow: 0.5px 0px 0px #000, -0.5px 0px 0px #000;
+  /* Simulating extra thickness */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* =========================
    Navbar links
 ========================= */
 .navbar-nav .nav-link {
-  color: #fff !important;
-  font-weight: 500;
+  color: #000 !important;
+  font-weight: 700;
+  /* Bold for clarity */
   margin-right: 1rem;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  text-shadow: none;
+  /* Removed shadow for crisp text */
   position: relative;
   transition: color 0.25s ease;
 }
 
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link.active {
-  color: #ffb733 !important;
+  color: #000 !important;
+  /* Keep black on hover */
 }
 
 /* =========================
@@ -123,7 +131,7 @@
 }
 
 .phone-number {
-  color: #fff;
+  color: #000;
   font-weight: 600;
   margin-left: 5px;
   font-size: 1.1rem;
@@ -139,6 +147,64 @@
 /* =========================
    Responsive tweaks
 ========================= */
+/* =========================
+   Responsive tweaks
+========================= */
+
+/* Show dropdown on hover for desktop */
+@media (min-width: 992px) {
+  .nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+    animation: fadeInUp 0.3s ease forwards;
+  }
+}
+
+/* Dropdown styling */
+.custom-navbar .dropdown-menu {
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 12px !important;
+  background-color: #f8f9fa !important;
+  /* Soft Light Grey */
+  padding: 10px 0 !important;
+  overflow: hidden !important;
+}
+
+.custom-navbar .dropdown-item {
+  font-weight: 600 !important;
+  color: #000000 !important;
+  /* Black text for light background */
+  padding: 12px 20px !important;
+  margin: 4px 10px !important;
+  border-radius: 8px !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  border-left: none !important;
+  /* Removed static border */
+}
+
+.custom-navbar .dropdown-item:hover {
+  background-color: #87CEEB !important;
+  /* Keep your theme blue */
+  color: #000000 !important;
+  transform: translateX(8px) scale(1.02);
+  /* Modern slide and slight grow */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 991px) {
 
   .social-icons,
@@ -152,7 +218,7 @@
   }
 
   .navbar-logo {
-    height: 60px;
+    height: 50px;
   }
 
   .navbar-brand-text {
