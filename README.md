@@ -1,6 +1,7 @@
-# Iman Islamic Center Website
-
 A premium, fully responsive website for Iman Islamic Center, built with React and Vite. This platform is designed to connect the community, provide essential religious services, and offer a modern user experience.
+
+**🌐 Live Site:** [iman-islamic-center.vercel.app](https://iman-islamic-center.vercel.app/) (Draft/Preview)
+**🔗 Repository:** [github.com/akeelsalman888/iman_islamic_center](https://github.com/akeelsalman888/iman_islamic_center)
 
 ## ✨ Key Features
 
@@ -53,7 +54,7 @@ iman_islamic_center/
 
 1. **Clone the repository**
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/akeelsalman888/iman_islamic_center.git
    cd iman_islamic_center
    ```
 
@@ -88,6 +89,7 @@ iman_islamic_center/
 *   **Ready for Vercel**: Fully configured for one-click deployment to Vercel or Netlify.
 *   **User Friendly**: All forms include visual feedback and modern validation states.
 *   **Scalable**: New events or forms can be added easily by updating the respective JSON or assets.
+*   **Mobile Fixed**: Optimized hamburger menu and dropdowns for Android and iOS mobile browsers (Jan 2026 update).
 
 ---
 *Created with care for Iman Islamic Center.*
