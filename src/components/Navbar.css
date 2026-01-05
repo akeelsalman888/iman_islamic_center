@@ -17,10 +17,10 @@
   width: auto;
   transition: transform 0.3s ease;
 
-  /* Extremely large logo scale */
-  transform: scale(2.8);
+  /* Large logo scale - slightly scaled back for better desktop fit */
+  transform: scale(2.2);
   transform-origin: left center;
-  margin-right: 45px;
+  margin-right: 35px;
   /* Optimized breathing room between logo and text */
 }
 
@@ -155,7 +155,8 @@
   /* Very tight placement next to social icons */
   background: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(10px);
-  padding: 6px 22px;
+  padding: 4px 18px;
+  /* Slightly more compact for better fit */
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.7);
   flex-shrink: 0;
@@ -273,7 +274,7 @@
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .navbar-logo {
     height: 55px;
     /* Slightly larger base height for mobile */

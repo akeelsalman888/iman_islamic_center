@@ -16,7 +16,7 @@ function Navbar() {
     };
 
     return (
-        <nav className="navbar navbar-expand-lg custom-navbar fixed-top py-2">
+        <nav className="navbar navbar-expand-xl custom-navbar fixed-top py-2">
             <div className="container-fluid ps-2 pe-4 pe-lg-5">
 
                 {/* Brand Section */}

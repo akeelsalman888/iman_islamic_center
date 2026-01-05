@@ -253,7 +253,7 @@ textarea.form-control {
 }
 
 /* RESPONSIVE */
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
 
     .contact-info-card,
     .contact-form-card {

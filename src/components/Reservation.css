@@ -167,7 +167,7 @@ input[type="time"]::-webkit-calendar-picker-indicator:hover {
     transform: scale(1.1);
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
     .reservation-card {
         padding: 40px 30px;
     }
