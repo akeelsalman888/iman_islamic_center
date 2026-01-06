@@ -1,8 +1,11 @@
 import React from "react";
 import heroImage from "../assets/hero.png";
+import { useLanguage } from "../context/LanguageContext";
 import "./Hero.css";
 
 function Hero() {
+    const { t } = useLanguage();
+
     return (
         <section className="hero-section d-flex align-items-center justify-content-center">
             <img
@@ -14,8 +17,8 @@ function Hero() {
             <div className="hero-overlay"></div>
 
             <div className="container hero-content">
-                <h1>Welcome to Iman Islamic Center</h1>
-                <p>Connecting Community, Faith, and Education</p>
+                <h1>{t('hero.welcome')}</h1>
+                <p>{t('hero.subtext')}</p>
             </div>
         </section>
     );
