@@ -69,6 +69,19 @@ export const translations = {
             submit: "Schedule Visit",
             hint: "We'll send a confirmation to your email once the team reviews your request."
         },
+        downloadForms: {
+            title: "Community Forms",
+            subtitle: "Download and fill out these forms to participate in our community activities and programs.",
+            download: "Download Now",
+            constitutionTitle: "Constitution and Bylaws",
+            constitutionDesc: "Official constitution and bylaws of the Iman Islamic Center.",
+            commitmentTitle: "Monthly Commitment Form",
+            commitmentDesc: "Pledge your monthly contribution to support the Islamic Center.",
+            elcTitle: "ELC Member Work Form",
+            elcDesc: "Application form for Executive Leadership Committee member positions.",
+            boardTitle: "Board of Directors Work Form",
+            boardDesc: "Application form for Board of Directors member positions."
+        },
         contact: {
             title: "Get in Touch",
             text: "Whether you have a question about our services, events, or simply want to say hello, we'd love to hear from you.",
@@ -80,7 +93,11 @@ export const translations = {
             emailLabel: "Email Address",
             phoneLabel: "Phone Number",
             messageLabel: "Your Message",
-            send: "Send Message"
+            send: "Send Message",
+            // Values (Always English)
+            phoneValue: "(402) 730-3883",
+            emailValue: "info@imanislamic.org",
+            addressValue: "901 w dawes avenue, Lincoln, NE"
         },
         footer: {
             mission: "Serving the Lincoln, NE community with religious guidance, education, and community programs.",
@@ -113,51 +130,18 @@ export const translations = {
             prayerSchedule: "جدول الصلاة",
             bookVisit: "احجز زيارة"
         },
-        events: {
-            heading: "الإعلانات والفعاليات",
-            learnMore: "اعرف المزيد",
-            quranTitle: "حلقات تحفيظ وتعليم القرآن",
-            quranDesc: "تعمل حلقات تحفيظ القرآن ثلاثة أيام في الأسبوع لمدة ساعتين كل يوم. تتاح الفرصة للبنين والبنات، من الأطفال إلى الشباب، لحفظ القرآن الكريم كاملاً وتعلم أساسيات الإسلام. جميع الجلسات يقودها معلمون مدربون.",
-            daycareTitle: "خدمات رعاية الأطفال",
-            daycareDesc: "توفير بيئة تربوية ودينية للأطفال مع دعم الآباء العاملين.",
-            marriageTitle: "عقود الزواج",
-            marriageDesc: "إبرام عقود الزواج بناءً على القرآن الكريم وسنة النبي (ﷺ)",
-            eduTitle: "البرامج التعليمية",
-            eduDesc: "إشراك المجتمع في جلسات القرآن والمحاضرات."
-        },
-        prayer: {
-            heading: "مواقيت الصلاة",
-            prayer: "الصلاة",
-            adhaan: "الأذان",
-            iqamah: "الإقامة",
-            fajr: "الفجر",
-            sunrise: "الشروق",
-            dhuhr: "الظهر",
-            asr: "العصر",
-            maghrib: "المغرب",
-            isha: "العشاء",
-            jummah1: "الجمعة الأولى",
-            jummah2: "الجمعة الثانية",
-            khutba: "الخطبة"
-        },
-        donate: {
-            heading: "ادعم مركز الإيمان الإسلامي",
-            desc: "مساهماتكم السخية تساعدنا في إدارة البرامج التعليمية وفصول القرآن وخدمات المجتمع.",
-            button: "تبرع الآن"
-        },
-        reservation: {
-            title: "احجز زيارة",
-            subtitle: "قابل فريقنا لمعرفة المزيد عن مجتمعنا وخدماتنا.",
-            fullName: "الاسم الكامل",
-            enterName: "أدخل اسمك",
-            email: "البريد الإلكتروني",
-            enterEmail: "your@email.com",
-            date: "التاريخ المفضل",
-            time: "الوقت المفضل",
-            reason: "سبب الزيارة (اختياري)",
-            reasonPlaceholder: "أخبرنا قليلاً عن زيارتك...",
-            submit: "تأكيد الحجز",
-            hint: "سنرسل تأكيدًا إلى بريدك الإلكتروني بمجرد مراجعة الفريق لطلبك."
+        downloadForms: {
+            title: "نماذج المجتمع",
+            subtitle: "قم بتحميل وتعبئة هذه النماذج للمشاركة في أنشطة وبرامج مجتمعنا.",
+            download: "تحميل الآن",
+            constitutionTitle: "الدستور واللوائح",
+            constitutionDesc: "الدستور الرسمي واللوائح لمركز الإيمان الإسلامي.",
+            commitmentTitle: "نموذج الالتزام الشهري",
+            commitmentDesc: "تعهد بمساهمتك الشهرية لدعم المركز الإسلامي.",
+            elcTitle: "نموذج عمل عضو ELC",
+            elcDesc: "نموذج طلب لمناصب أعضاء اللجنة القيادية التنفيذية.",
+            boardTitle: "نموذج عمل مجلس الإدارة",
+            boardDesc: "نموذج طلب لمناصب أعضاء مجلس الإدارة."
         },
         contact: {
             title: "تواصل معنا",
@@ -170,7 +154,11 @@ export const translations = {
             emailLabel: "البريد الإلكتروني",
             phoneLabel: "رقم الهاتف",
             messageLabel: "رسالتك",
-            send: "إرسال الرسالة"
+            send: "إرسال الرسالة",
+            // Values (Always English per request)
+            phoneValue: "(402) 730-3883",
+            emailValue: "info@imanislamic.org",
+            addressValue: "901 w dawes avenue, Lincoln, NE"
         },
         footer: {
             mission: "خدمة مجتمع لينكون، نبراسكا بالإرشاد الديني والتعليم والبرامج المجتمعية.",

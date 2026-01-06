@@ -119,23 +119,31 @@ function Navbar() {
 
                     {/* Language Switcher & Social Icons */}
                     <div className="d-flex align-items-center mt-3 mt-lg-0 ms-lg-3">
-                        {/* Language Toggle */}
-                        <button
-                            className="btn btn-link text-decoration-none fw-bold me-3 language-toggle"
-                            onClick={toggleLanguage}
-                            style={{ color: '#27569b', fontSize: '1rem', border: '1px solid #27569b', borderRadius: '4px', padding: '2px 8px' }}
-                        >
-                            <FaGlobe className="me-1 mb-1" />
-                            {language === 'en' ? 'العربية' : 'English'}
-                        </button>
-
                         {/* Social Icons */}
-                        <ul className="navbar-nav navbar-right-items align-items-center d-flex flex-row">
+                        <ul className="navbar-nav navbar-right-items align-items-center d-flex flex-row me-3">
                             <li className="nav-item me-1"><a href="https://facebook.com" target="_blank" className="social-icon facebook"><FaFacebookF /></a></li>
                             <li className="nav-item me-1"><a href="https://twitter.com" target="_blank" className="social-icon twitter"><FaTwitter /></a></li>
                             <li className="nav-item me-1"><a href="https://youtube.com" target="_blank" className="social-icon youtube"><FaYoutube /></a></li>
                             <li className="nav-item"><a href="https://linkedin.com" target="_blank" className="social-icon linkedin"><FaLinkedinIn /></a></li>
                         </ul>
+
+                        {/* Language Toggle */}
+                        <button
+                            className="btn btn-link text-decoration-none fw-bold language-toggle"
+                            onClick={toggleLanguage}
+                            style={{
+                                color: '#27569b',
+                                fontSize: '0.9rem',
+                                border: '1px solid #27569b',
+                                borderRadius: '4px',
+                                padding: '4px 8px',
+                                minWidth: '140px',
+                                textAlign: 'center'
+                            }}
+                        >
+                            <FaGlobe className="me-2 mb-1" />
+                            🇺🇸 English | العربية
+                        </button>
                     </div>
                 </div>
             </div>

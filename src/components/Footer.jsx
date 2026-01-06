@@ -34,7 +34,7 @@ function Footer() {
                         <h5 className="text-white">{t('footer.contactUs')}</h5>
                         <p className="text-white mb-1">Email: info@imanislamic.org</p>
                         <p className="text-white mb-1">Phone: (402) 730-3883</p>
-                        <p className="text-white">Address: 901 w dawes avenue, {t('navbar.location')}</p>
+                        <p className="text-white">Address: 901 w dawes avenue, Lincoln, NE</p>
                         <div className="social-links mt-2">
                             <a href="#" className="footer-link me-2">Facebook</a>
                             <a href="#" className="footer-link me-2">Twitter</a>
