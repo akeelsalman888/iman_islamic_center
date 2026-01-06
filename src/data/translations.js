@@ -73,13 +73,13 @@ export const translations = {
             title: "Community Forms",
             subtitle: "Download and fill out these forms to participate in our community activities and programs.",
             download: "Download Now",
-            constitutionTitle: "Constitution and Bylaws",
+            constitutionTitle: "Constitution and bylaws",
             constitutionDesc: "Official constitution and bylaws of the Iman Islamic Center.",
-            commitmentTitle: "Monthly Commitment Form",
+            commitmentTitle: "Islamic_Center_Monthly_Commitment_Form",
             commitmentDesc: "Pledge your monthly contribution to support the Islamic Center.",
-            elcTitle: "ELC Member Work Form",
+            elcTitle: "ELC Member work form",
             elcDesc: "Application form for Executive Leadership Committee member positions.",
-            boardTitle: "Board of Directors Work Form",
+            boardTitle: "board of directors member work form",
             boardDesc: "Application form for Board of Directors member positions."
         },
         contact: {
