@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
-import { MdGTranslate } from "react-icons/md";
+import { IoLanguage } from "react-icons/io5";
 import { useLanguage } from "../context/LanguageContext";
 import logo from "../assets/logo.png";
 import "./Navbar.css";
@@ -144,7 +144,7 @@ function Navbar() {
                                 justifyContent: 'center'
                             }}
                         >
-                            <MdGTranslate className="me-2" style={{ fontSize: '1.2rem' }} />
+                            <IoLanguage className="me-2" style={{ fontSize: '1.3rem' }} />
                             <span>English</span>
                             <span className="mx-2" style={{ opacity: 0.5 }}>|</span>
                             <span>العربية</span>
