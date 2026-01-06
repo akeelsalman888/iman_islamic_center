@@ -136,13 +136,18 @@ function Navbar() {
                                 fontSize: '0.9rem',
                                 border: '1px solid #27569b',
                                 borderRadius: '4px',
-                                padding: '4px 8px',
-                                minWidth: '140px',
-                                textAlign: 'center'
+                                padding: '4px 12px',
+                                minWidth: '160px',
+                                textAlign: 'center',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center'
                             }}
                         >
-                            <FaGlobe className="me-2 mb-1" />
-                            🇺🇸 English | العربية
+                            <FaGlobe className="me-2" />
+                            <span>English</span>
+                            <span className="mx-2" style={{ opacity: 0.5 }}>|</span>
+                            <span>العربية</span>
                         </button>
                     </div>
                 </div>
