@@ -123,24 +123,19 @@ html[dir="rtl"] .navbar-nav .nav-link {
   background: linear-gradient(135deg, #ff9f00, #ffb733);
   color: #fff;
   font-weight: 900 !important;
+  font-size: 1.6rem !important;
+  /* Adjusted size */
   text-shadow: 0.5px 0px 0px #fff, -0.5px 0px 0px #fff;
   /* Extra thickness shadow */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding: 6px 16px;
+  padding: 8px 26px;
   border-radius: 999px;
   border: none;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* Arabic larger donate button */
-html[dir="rtl"] .btn-donate {
-  font-size: 1.5rem;
-  font-weight: 900;
-  padding: 8px 24px;
-  /* Increased padding for balance */
-}
-
+/* Removed redundant RTL override */
 .btn-donate:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 14px rgba(255, 159, 0, 0.5);
@@ -159,10 +154,10 @@ html[dir="rtl"] .language-toggle {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 34px;
-  height: 34px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  font-size: 14px;
+  font-size: 18px;
   color: #fff;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }

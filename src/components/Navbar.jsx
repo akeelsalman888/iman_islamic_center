@@ -132,9 +132,9 @@ function Navbar() {
                             className="btn btn-link text-decoration-none fw-bold language-toggle"
                             onClick={toggleLanguage}
                             style={{
-                                color: '#27569b',
+                                color: '#000',
                                 fontSize: '1.15rem',
-                                border: '2px solid #27569b',
+                                border: '2px solid #000',
                                 borderRadius: '8px',
                                 padding: '6px 16px',
                                 minWidth: '200px',
