@@ -45,7 +45,7 @@ function Navbar() {
 
                 {/* Collapsible Content */}
                 <div className={`collapse navbar-collapse ${isOpen ? "show" : ""}`} id="navbarNav">
-                    <ul className="navbar-nav ms-auto align-items-center">
+                    <ul className="navbar-nav mx-auto align-items-center">
                         <li className="nav-item dropdown">
                             {/* Removed closeMenu from header so it can open sublinks on mobile */}
                             <a href="#" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={(e) => e.preventDefault()}>

@@ -77,15 +77,22 @@
 }
 
 /* =========================
+/* =========================
    Navbar links
 ========================= */
+/* Move links explicitly to the right */
+.navbar-nav.me-auto {
+  margin-left: 3rem !important;
+}
+
 .navbar-nav .nav-link {
   color: #000 !important;
   font-weight: 700;
   /* Bold for clarity */
   margin-right: 0.5rem;
   /* Increased margin slightly for bigger links */
-  font-size: 1.15rem;
+  font-size: 1.5rem;
+  /* Unified Big Size */
   text-shadow: none;
   /* Removed shadow for crisp text */
   position: relative;
@@ -94,7 +101,7 @@
 
 /* Arabic navbar links – larger for readability */
 html[dir="rtl"] .navbar-nav .nav-link {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 700;
 }
 
@@ -128,8 +135,10 @@ html[dir="rtl"] .navbar-nav .nav-link {
 
 /* Arabic larger donate button */
 html[dir="rtl"] .btn-donate {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 900;
+  padding: 8px 24px;
+  /* Increased padding for balance */
 }
 
 .btn-donate:hover {
@@ -226,21 +235,17 @@ html[dir="rtl"] .language-toggle {
   color: #000;
   font-weight: 700;
   margin-left: 10px;
-  font-size: 0.9rem;
+  font-size: 1.5rem;
+  /* Bigger size */
   letter-spacing: 0.2px;
 }
 
-/* Arabic Navbar Phone & Contact - Larger Text */
-html[dir="rtl"] .phone-number,
-html[dir="rtl"] .contact-link-modern {
-  font-size: 1.2rem !important;
-  font-weight: 800;
-}
-
+/* Removed specific RTL override as we now apply big size universally */
 .contact-link-modern {
   color: #27569b !important;
   font-weight: 800;
-  font-size: 0.9rem;
+  font-size: 1.5rem;
+  /* Bigger size */
   text-transform: uppercase;
   letter-spacing: 0.5px;
   display: flex;
