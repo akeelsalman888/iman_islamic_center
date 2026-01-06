@@ -87,11 +87,10 @@ function Navbar() {
                                 {t('navbar.forms')}
                             </a>
                             <ul className="dropdown-menu">
-                                <li><a className="dropdown-item" href="/forms/Constitution and bylaws.docx" download onClick={closeMenu}>{t('navbar.constitution')}</a></li>
-                                <li><a className="dropdown-item" href="/forms/Islamic_Center_Monthly_Commitment_Form.docx" download onClick={closeMenu}>{t('navbar.forms')} (Commitment)</a></li>
-                                <li><a className="dropdown-item" href="/forms/ELC Member work form.docx" download onClick={closeMenu}>{t('navbar.forms')} (ELC)</a></li>
-                                <li><a className="dropdown-item" href="/forms/board of directors member work form.docx" download onClick={closeMenu}>{t('navbar.forms')} (Board)</a></li>
-
+                                <li><a className="dropdown-item" href="/forms/Constitution and bylaws.docx" download onClick={closeMenu}>{t('downloadForms.constitutionTitle')}</a></li>
+                                <li><a className="dropdown-item" href="/forms/Islamic_Center_Monthly_Commitment_Form.docx" download onClick={closeMenu}>{t('downloadForms.commitmentTitle')}</a></li>
+                                <li><a className="dropdown-item" href="/forms/ELC Member work form.docx" download onClick={closeMenu}>{t('downloadForms.elcTitle')}</a></li>
+                                <li><a className="dropdown-item" href="/forms/board of directors member work form.docx" download onClick={closeMenu}>{t('downloadForms.boardTitle')}</a></li>
                             </ul>
                         </li>
 
