@@ -284,7 +284,7 @@ html[dir="rtl"] .language-toggle {
   background-color: #f8f9fa !important;
   /* Soft Light Grey */
   padding: 10px 0 !important;
-  overflow: hidden !important;
+  overflow: visible !important;
 }
 
 .custom-navbar .dropdown-item {
@@ -307,6 +307,68 @@ html[dir="rtl"] .language-toggle {
   /* Modern slide and slight grow */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
+
+/* =========================================
+   Nested Dropdown Submenu Styles - REBUILT
+   ========================================= */
+
+/* Parent item styling */
+.dropdown-submenu {
+  position: relative;
+}
+
+/* 1. HIDE submenu by default */
+.dropdown-submenu>.dropdown-menu {
+  display: none !important;
+  /* Force hide */
+  position: absolute;
+  top: 0;
+  left: 100%;
+  /* Push to the right */
+  margin-top: -5px;
+  background-color: #ffffff !important;
+  border-radius: 8px !important;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15) !important;
+  min-width: 250px;
+  z-index: 1000;
+}
+
+/* 2. SHOW submenu ONLY on hover */
+@media (hover: hover) {
+  .dropdown-submenu:hover>.dropdown-menu {
+    display: block !important;
+    animation: fadeInUp 0.2s ease forwards;
+  }
+}
+
+/* Arrow indicator styling */
+.dropdown-submenu>.dropdown-item::after {
+  content: "▶";
+  float: right;
+  margin-left: 10px;
+  opacity: 0.6;
+  font-size: 0.8em;
+  margin-top: 4px;
+}
+
+/* RTL Support for Arrow */
+html[dir="rtl"] .dropdown-submenu>.dropdown-item::after {
+  content: "◀";
+  float: left;
+  margin-right: 10px;
+  margin-left: 0;
+}
+
+/* RTL Support for Submenu Position */
+html[dir="rtl"] .dropdown-submenu>.dropdown-menu {
+  left: auto;
+  right: 100%;
+  margin-left: 0;
+  margin-right: 0.1rem;
+}
+
+
+
 
 /* Animation Keyframes */
 @keyframes fadeInUp {

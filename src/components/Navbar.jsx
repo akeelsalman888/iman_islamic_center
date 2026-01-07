@@ -123,9 +123,27 @@ function Navbar() {
                                 {t('navbar.forms')}
                             </a>
                             <ul className="dropdown-menu">
-                                <li><a className="dropdown-item" href="/forms/Islamic_Center_Monthly_Commitment_Form.docx" download onClick={closeMenu}>{t('downloadForms.commitmentTitle')}</a></li>
-                                <li><a className="dropdown-item" href="/forms/ELC Member work form.docx" download onClick={closeMenu}>{t('downloadForms.elcTitle')}</a></li>
-                                <li><a className="dropdown-item" href="/forms/board of directors member work form.docx" download onClick={closeMenu}>{t('downloadForms.boardTitle')}</a></li>
+                                {/* Membership Forms Submenu */}
+                                <li className="dropdown-submenu">
+                                    <a className="dropdown-item dropdown-toggle" href="#" onClick={(e) => e.preventDefault()}>
+                                        {t('navbar.membershipForms')}
+                                    </a>
+                                    <ul className="dropdown-menu">
+                                        <li><a className="dropdown-item" href="/forms/Islamic_Center_Monthly_Commitment_Form.docx" download onClick={closeMenu}>{t('downloadForms.commitmentTitle')}</a></li>
+                                        <li><a className="dropdown-item" href="/forms/ELC Member work form.docx" download onClick={closeMenu}>{t('downloadForms.elcTitle')}</a></li>
+                                    </ul>
+                                </li>
+
+                                {/* Donation Forms Submenu */}
+                                <li className="dropdown-submenu">
+                                    <a className="dropdown-item dropdown-toggle" href="#" onClick={(e) => e.preventDefault()}>
+                                        {t('navbar.donationForms')}
+                                    </a>
+                                    <ul className="dropdown-menu">
+                                        <li><a className="dropdown-item" href="/forms/board of directors member work form.docx" download onClick={closeMenu}>{t('downloadForms.boardTitle')}</a></li>
+                                        <li><a className="dropdown-item" href="/forms/Sponsor_Quran_Student.docx" download onClick={closeMenu}>{t('downloadForms.sponsorTitle')}</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
 
