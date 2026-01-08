@@ -10,9 +10,9 @@
   width: 100%;
 
   /* CRITICAL: Physical height must encompass the scaled logo */
-  min-height: 90px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  min-height: 180px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   display: flex;
   align-items: center;
   /* Center everything vertically */
@@ -32,20 +32,20 @@
   transition: transform 0.3s ease;
 
   /* Scale purely from center */
-  transform: scale(2.2);
+  transform: scale(4.4);
   transform-origin: center center;
 
   /* Adjusted margins for the new scale */
-  margin-top: 0;
+  margin-top: 40px;
   margin-bottom: 0;
-  margin-right: 15px;
+  margin-right: 40px;
   /* Tighter spacing */
-  margin-left: 20px;
+  margin-left: 60px;
   /* Push logo inward */
 }
 
 .navbar-logo:hover {
-  transform: scale(3.8);
+  transform: scale(4.8);
 }
 
 .brand-text-wrapper {
@@ -57,8 +57,8 @@
 .navbar-brand-text {
   color: #27569b !important;
   font-weight: 900;
-  font-size: 1.6rem;
-  /* Standard Size */
+  font-size: 3.2rem;
+  /* 2x Size */
   letter-spacing: 1px;
   text-transform: uppercase;
   text-shadow: none;
@@ -68,8 +68,8 @@
 .navbar-brand-location {
   color: #6c757d !important;
   font-weight: 700;
-  font-size: 1rem;
-  /* Standard Size */
+  font-size: 2rem;
+  /* 2x Size */
   letter-spacing: 3px;
   text-transform: uppercase;
   margin-top: 5px;
