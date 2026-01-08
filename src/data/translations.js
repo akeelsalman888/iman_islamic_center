@@ -33,7 +33,7 @@ export const translations = {
         },
         hero: {
             welcome: "Welcome to Iman Islamic Center",
-            subtext: "A place of peace, prayer, and community.",
+            subtext: "We are an Islamic center firmly grounded in the Quran and Sunnah, committed to upholding the understanding of the Prophet's companions and the virtuous generations.",
             prayerSchedule: "Prayer Schedule",
             bookVisit: "Book a Visit"
         },
@@ -211,7 +211,7 @@ export const translations = {
         },
         hero: {
             welcome: "مرحبًا بكم في مركز الإيمان الإسلامي",
-            subtext: "مكان للسلام والصلاة والمجتمع.",
+            subtext: "نحن مركز إسلامي يرتكز بثبات على الكتاب والسنة، وملتزمون بمنهج السلف الصالح وفهم الصحابة والقرون المفضلة.",
             prayerSchedule: "جدول الصلاة",
             bookVisit: "احجز زيارة"
         },
