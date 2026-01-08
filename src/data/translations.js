@@ -140,8 +140,21 @@ export const translations = {
             dowryAmount: "Amount of Dowry",
             nikaahDate: "Date of Nikaah",
             submitButton: "Submit Application",
-            imamPlaceholder: "To be filled by Imam"
+            imamPlaceholder: "To be filled by Imam",
+            imamNameValue: "Abdelaziz Al Abbasi"
         },
+        states: [
+            "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado",
+            "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho",
+            "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
+            "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota",
+            "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada",
+            "New Hampshire", "New Jersey", "New Mexico", "New York",
+            "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon",
+            "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
+            "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington",
+            "West Virginia", "Wisconsin", "Wyoming"
+        ],
         footer: {
             mission: "Serving the Lincoln, NE community with religious guidance, education, and community programs.",
             quickLinks: "Quick Links",
@@ -288,8 +301,21 @@ export const translations = {
             dowryAmount: "مبلغ المهر",
             nikaahDate: "تاريخ النكاح",
             submitButton: "إرسال الطلب",
-            imamPlaceholder: "سيتم ملؤها من قبل الإمام"
+            imamPlaceholder: "سيتم ملؤها من قبل الإمام",
+            imamNameValue: "عبد العزيز العباسي"
         },
+        states: [
+            "ألاباما", "ألاسكا", "أريزونا", "أركنساس", "كاليفورنيا", "كولورادو",
+            "كونيتيكت", "ديلاوير", "فلوريدا", "جورجيا", "هاواي", "أيداهو",
+            "إلينوي", "إنديانا", "أيوا", "كانساس", "كنتاكي", "لويزيانا",
+            "مين", "ماريلاند", "ماساتشوستس", "ميشيغان", "مينيسوتا",
+            "ميسيسيبي", "ميسوري", "مونتانا", "نبراسكا", "نيفادا",
+            "نيو هامبشاير", "نيوجيرسي", "نيو مكسيكو", "نيويورك",
+            "نورث كارولينا", "نورث داكوتا", "أوهايو", "أوكلاهوما", "أوريغون",
+            "بنسلفانيا", "رود آيلاند", "ساوث كارولينا", "ساوث داكوتا",
+            "تينيسي", "تكساس", "يوتا", "فيرمونت", "فيرجينيا", "واشنطن",
+            "ويست فيرجينيا", "ويسكونسن", "وايومنغ"
+        ],
         footer: {
             mission: "خدمة مجتمع لينكون، نبراسكا بالإرشاد الديني والتعليم والبرامج المجتمعية.",
             quickLinks: "روابط سريعة",
