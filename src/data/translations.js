@@ -24,7 +24,9 @@ export const translations = {
             certifiedTranslation: "Certified Document Translation",
             funeralServices: "Funeral Services",
             donate: "Donate",
-            callUs: "Call Us"
+            callUs: "Call Us",
+            applyOnlineForm: "Apply online form",
+            downloadForm: "Download form"
         },
         hero: {
             welcome: "Welcome to Iman Islamic Center",
@@ -131,9 +133,6 @@ export const translations = {
             dailyPrayers: "الصلوات اليومية",
             jummahPrayers: "صلاة الجمعة",
             constitution: "الدستور واللوائح",
-            forms: "النماذج",
-            membershipForms: "نماذج العضوية",
-            donationForms: "نماذج التبرعات",
             services: "الخدمات",
             marriageContracts: "عقود الزواج",
             coupleReconciliation: "المصالحة الزوجية",
@@ -142,7 +141,9 @@ export const translations = {
             certifiedTranslation: "الترجمة المعتمدة للوثائق",
             funeralServices: "خدمات الجنازة",
             donate: "تبرع",
-            callUs: "اتصل بنا"
+            callUs: "اتصل بنا",
+            applyOnlineForm: "تقديم نموذج عبر الإنترنت",
+            downloadForm: "تحميل النموذج"
         },
         hero: {
             welcome: "مرحبًا بكم في مركز الإيمان الإسلامي",
@@ -228,6 +229,10 @@ export const translations = {
             phoneValue: "(402) 730-3883",
             emailValue: "info@imanislamic.org",
             addressValue: "901 w dawes avenue, Lincoln, NE"
+        },
+        marriageCertificate: {
+            title: "شهادة الزواج الرسمية",
+            subtitle: "يرجى ملء جميع المعلومات المطلوبة بدقة"
         },
         footer: {
             mission: "خدمة مجتمع لينكون، نبراسكا بالإرشاد الديني والتعليم والبرامج المجتمعية.",

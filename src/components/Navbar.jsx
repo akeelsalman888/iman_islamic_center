@@ -104,7 +104,16 @@ function Navbar() {
                                 {t('navbar.services')}
                             </a>
                             <ul className="dropdown-menu">
-                                <li><a className="dropdown-item" href="#services" onClick={closeMenu}>{t('navbar.marriageContracts')}</a></li>
+                                {/* Marriage Contracts Submenu */}
+                                <li className="dropdown-submenu">
+                                    <a className="dropdown-item dropdown-toggle" href="#" onClick={(e) => e.preventDefault()}>
+                                        {t('navbar.marriageContracts')}
+                                    </a>
+                                    <ul className="dropdown-menu">
+                                        <li><Link className="dropdown-item" to="/marriage-certificate" onClick={closeMenu}>{t('navbar.applyOnlineForm')}</Link></li>
+                                        <li><a className="dropdown-item" href="#" download onClick={closeMenu}>{t('navbar.downloadForm')}</a></li>
+                                    </ul>
+                                </li>
                                 <li><a className="dropdown-item" href="#services" onClick={closeMenu}>{t('navbar.coupleReconciliation')}</a></li>
                                 <li><a className="dropdown-item" href="#services" onClick={closeMenu}>{t('navbar.divorceFormalization')}</a></li>
                                 <li><a className="dropdown-item" href="#services" onClick={closeMenu}>{t('navbar.certifiedTranslation')}</a></li>

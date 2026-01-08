@@ -10,6 +10,7 @@ import PrayerTimes from "./components/PrayerTimes";
 import Contact from "./components/Contact";
 import Reservation from "./components/Reservation";
 import ContactPage from "./components/ContactPage";
+import MarriageCertificate from "./components/MarriageCertificate";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           }
         />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/marriage-certificate" element={<MarriageCertificate />} />
         <Route path="/event/:id" element={<Events />} />
       </Routes>
       <Footer />
