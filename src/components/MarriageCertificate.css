@@ -10,9 +10,13 @@
 
 .marriage-certificate-card {
     background: white;
-    border-radius: 15px;
+    border-radius: 30px;
     padding: 40px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.1);
+    border: 2px solid #27569b;
+    /* Identity Blue Border */
+    position: relative;
+    overflow: hidden;
 }
 
 .marriage-title {
