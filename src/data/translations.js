@@ -204,7 +204,10 @@ export const translations = {
             donate: "تبرع",
             callUs: "اتصل بنا",
             applyOnlineForm: "تقديم نموذج عبر الإنترنت",
-            downloadForm: "تحميل النموذج"
+            downloadForm: "تحميل النموذج",
+            forms: "النماذج",
+            membershipForms: "نماذج العضوية",
+            donationForms: "نماذج التبرع"
         },
         hero: {
             welcome: "مرحبًا بكم في مركز الإيمان الإسلامي",

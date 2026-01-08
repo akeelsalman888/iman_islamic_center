@@ -27,8 +27,8 @@ function Navbar() {
     };
 
     return (
-        <nav className="navbar navbar-expand-xl custom-navbar fixed-top py-2">
-            <div className="container-fluid ps-2 pe-4 pe-lg-5">
+        <nav className="navbar navbar-expand-xl custom-navbar fixed-top">
+            <div className="container-fluid px-4">
 
                 {/* Brand Section */}
                 <Link className="navbar-brand d-flex align-items-center" to="/" onClick={closeMenu}>
@@ -39,7 +39,7 @@ function Navbar() {
                     </div>
                 </Link>
 
-                {/* Language Toggle - Moved here between logo and menu */}
+                {/* Language Toggle - Text Style */}
                 <button
                     className="btn btn-link text-decoration-none fw-bold language-toggle ms-3"
                     onClick={toggleLanguage}
@@ -77,7 +77,6 @@ function Navbar() {
                 <div className={`collapse navbar-collapse ${isOpen ? "show" : ""}`} id="navbarNav">
                     <ul className="navbar-nav mx-auto align-items-center">
                         <li className="nav-item dropdown">
-                            {/* Removed closeMenu from header so it can open sublinks on mobile */}
                             <a href="#" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={(e) => e.preventDefault()}>
                                 {t('navbar.home')}
                             </a>
@@ -115,6 +114,7 @@ function Navbar() {
                                 <li><a className="dropdown-item" href="#services" onClick={closeMenu}>{t('navbar.quranSessions')}</a></li>
                                 <li><a className="dropdown-item" href="#services" onClick={closeMenu}>{t('navbar.daycareServices')}</a></li>
                                 <li><a className="dropdown-item" href="#services" onClick={closeMenu}>{t('navbar.eduPrograms')}</a></li>
+
                                 {/* Marriage Contracts Submenu */}
                                 <li className="dropdown-submenu">
                                     <a
@@ -129,6 +129,7 @@ function Navbar() {
                                         <li><a className="dropdown-item" href="#" download onClick={closeMenu}>{t('navbar.downloadForm')}</a></li>
                                     </ul>
                                 </li>
+
                                 <li><a className="dropdown-item" href="#services" onClick={closeMenu}>{t('navbar.coupleReconciliation')}</a></li>
                                 <li><a className="dropdown-item" href="#services" onClick={closeMenu}>{t('navbar.divorceFormalization')}</a></li>
                                 <li><a className="dropdown-item" href="#services" onClick={closeMenu}>{t('navbar.certifiedTranslation')}</a></li>
@@ -201,7 +202,6 @@ function Navbar() {
                         </div>
                     </div>
 
-                    {/* Social Icons */}
                     <div className="d-flex align-items-center mt-3 mt-lg-0 ms-lg-3">
                         <ul className="navbar-nav navbar-right-items align-items-center d-flex flex-row">
                             <li className="nav-item me-1"><a href="https://facebook.com" target="_blank" className="social-icon facebook"><FaFacebookF /></a></li>

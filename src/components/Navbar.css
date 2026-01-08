@@ -9,29 +9,38 @@
   z-index: 999;
   width: 100%;
 
-  /* CRITICAL: Physical height must encompass the scaled logo */
-  min-height: 100px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  /* FIXED HEIGHT - Logo won't affect this */
+  height: 100px;
+  padding-top: 0;
+  padding-bottom: 0;
   display: flex;
   align-items: center;
   /* Center everything vertically */
+  overflow: visible;
+  /* Allow logo to extend beyond navbar */
 }
 
 /* =========================
    Logo + Brand
 ========================= */
 .custom-navbar .container-fluid {
-  padding-right: 1rem !important;
-  /* Reduce outer padding to give more room */
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  /* Remove padding so logo touches edge */
 }
 
 .navbar-logo {
-  height: 80px;
+  height: 160px;
+  /* Large logo on desktop */
   width: auto;
   transition: all 0.3s ease;
-  margin-right: 20px;
+  margin-right: -15px;
+  /* Negative margin - text overlaps logo slightly */
   margin-left: 0;
+  /* No left margin - touches edge */
+  /* Adjusted margins - less negative on top to prevent cutoff */
+  margin-top: -20px;
+  margin-bottom: -40px;
 }
 
 .navbar-logo:hover {
@@ -47,8 +56,8 @@
 .navbar-brand-text {
   color: #27569b !important;
   font-weight: 900;
-  font-size: 1.5rem;
-  /* Standard Size */
+  font-size: 1.2rem;
+  /* Reduced to balance with larger logo */
   letter-spacing: 1px;
   text-transform: uppercase;
   text-shadow: none;
@@ -58,8 +67,8 @@
 .navbar-brand-location {
   color: #6c757d !important;
   font-weight: 700;
-  font-size: 0.9rem;
-  /* Standard Size */
+  font-size: 0.75rem;
+  /* Reduced to balance with larger logo */
   letter-spacing: 1px;
   text-transform: uppercase;
   margin-top: 2px;
@@ -67,8 +76,7 @@
 }
 
 /* =========================
-/* =========================
-   Navbar links
+   Navbar lenks
 ========================= */
 /* Move links explicitly to the right */
 .navbar-nav.me-auto {
@@ -81,8 +89,8 @@
   /* Semi-bold for space efficiency */
   margin-right: 0.5rem;
   /* Increased margin slightly for bigger links */
-  font-size: 1.1rem;
-  /* Unified Standard Size */
+  font-size: 0.95rem;
+  /* Slightly reduced to balance with logo */
   text-shadow: none;
   /* Removed shadow for crisp text */
   position: relative;
@@ -374,16 +382,57 @@ html[dir="rtl"] .dropdown-submenu>.dropdown-menu {
 }
 
 @media (max-width: 1199px) {
+
+  /* Mobile: Edge-to-edge like desktop */
+  .custom-navbar .container-fluid {
+    padding-left: 0 !important;
+    padding-right: 15px !important;
+    /* Keep space for buttons on the right */
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
   .navbar-logo {
-    height: 60px;
+    height: 100px;
+    /* Slightly smaller to ensure fit on phone */
     width: auto;
-    margin-right: 15px !important;
+    margin-right: -10px !important;
+    /* Bring text closer/overlap */
     margin-left: 0 !important;
+    margin-top: -5px;
+    margin-bottom: -5px;
     transform: none !important;
   }
 
+  /* Ensure buttons stay visible and aligned */
+  .navbar-toggler,
+  .language-toggle {
+    margin-top: 0 !important;
+    /* Reset any negative margins */
+    z-index: 1002;
+    flex-shrink: 0;
+    /* Prevent shrinking */
+  }
+
   .navbar-brand-text {
-    font-size: 1.2rem;
+    font-size: 1rem;
+    /* Adjust text for mobile fit */
+  }
+
+  .navbar-brand-text {
+    font-size: 1rem;
+    display: none !important;
+    /* Hide text on mobile to fit buttons */
+  }
+
+  .brand-text-wrapper {
+    display: none !important;
+    /* Hide label wrapper on mobile */
+  }
+
+  .navbar-brand-location {
+    display: none !important;
   }
 
   /* Premium Hamburger Styling - Bulletproof for Portrait */
@@ -485,7 +534,7 @@ html[dir="rtl"] .dropdown-submenu>.dropdown-menu {
   .navbar-logo {
     margin-left: 10px;
     margin-right: 15px;
-    height: 70px;
+    height: 80px;
     transform: none;
   }
 
@@ -502,5 +551,18 @@ html[dir="rtl"] .dropdown-submenu>.dropdown-menu {
   .phone-number,
   .contact-link-modern {
     font-size: 1rem;
+  }
+}
+
+/* Ensure content doesn't hide under fixed navbar */
+body {
+  padding-top: 140px;
+  /* 40px top bar (if exists) + 100px navbar */
+}
+
+@media (max-width: 767px) {
+  body {
+    padding-top: 110px;
+    /* Adjust for mobile navbar height */
   }
 }
