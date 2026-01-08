@@ -397,10 +397,7 @@ html[dir="rtl"] .dropdown-submenu>.dropdown-menu {
 @media (max-width: 1199px) {
 
   /* Mobile: Edge-to-edge like desktop */
-  .custom-navbar {
-    overflow: hidden !important;
-    /* Fix for horizontal scroll/zoom issue */
-  }
+
 
   .custom-navbar .container-fluid {
     padding-left: 0 !important;
