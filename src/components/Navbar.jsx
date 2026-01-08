@@ -104,6 +104,9 @@ function Navbar() {
                                 {t('navbar.services')}
                             </a>
                             <ul className="dropdown-menu">
+                                <li><a className="dropdown-item" href="#services" onClick={closeMenu}>{t('navbar.quranSessions')}</a></li>
+                                <li><a className="dropdown-item" href="#services" onClick={closeMenu}>{t('navbar.daycareServices')}</a></li>
+                                <li><a className="dropdown-item" href="#services" onClick={closeMenu}>{t('navbar.eduPrograms')}</a></li>
                                 {/* Marriage Contracts Submenu */}
                                 <li className="dropdown-submenu">
                                     <a className="dropdown-item dropdown-toggle" href="#" onClick={(e) => e.preventDefault()}>
