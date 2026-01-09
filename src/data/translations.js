@@ -40,6 +40,8 @@ export const translations = {
         events: {
             heading: "Announcements & Events",
             learnMore: "Learn More",
+            taraweehTitle: "Taraweeh Prayers - Ramadan 2026",
+            taraweehDesc: "Iman Islamic Center - IIC, happily announces the establish time of Taraweeh Prayers for Ramadan 2026",
             quranTitle: "Quran Memorization and Teaching Sessions",
             quranDesc: "The Quran memorization halaqas run three days a week for two hours each day. Both boys and girls, from children to youth, have the opportunity to memorize the entire Holy Quran and learn the fundamentals of Islam. All sessions are led by trained teachers.",
             daycareTitle: "Part-Time Daycare Services",
@@ -218,6 +220,8 @@ export const translations = {
         events: {
             heading: "الإعلانات والفعاليات",
             learnMore: "اعرف المزيد",
+            taraweehTitle: "صلاة التراويح - رمضان 2026",
+            taraweehDesc: "مركز الإيمان الإسلامي - IIC، يعلن بسعادة عن موعد إقامة صلاة التراويح لشهر رمضان 2026",
             quranTitle: "حلقات تحفيظ وتعليم القرآن",
             quranDesc: "تعمل حلقات تحفيظ القرآن ثلاثة أيام في الأسبوع لمدة ساعتين كل يوم. تتاح الفرصة للبنين والبنات، من الأطفال إلى الشباب، لحفظ القرآن الكريم كاملاً وتعلم أساسيات الإسلام. جميع الجلسات يقودها معلمون مدربون.",
             daycareTitle: "خدمات رعاية الأطفال",
