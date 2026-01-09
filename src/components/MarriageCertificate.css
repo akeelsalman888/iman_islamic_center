@@ -1,6 +1,12 @@
 .marriage-certificate-page {
-    margin-top: 200px;
+    margin-top: 250px;
     min-height: 100vh;
+}
+
+@media (max-width: 1399px) {
+    .marriage-certificate-page {
+        margin-top: 200px;
+    }
 }
 
 .marriage-certificate-section {

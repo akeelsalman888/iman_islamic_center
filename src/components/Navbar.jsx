@@ -123,7 +123,21 @@ function Navbar() {
                                 {t('navbar.services')}
                             </a>
                             <ul className="dropdown-menu">
-                                <li><a className="dropdown-item" href="#services" onClick={closeMenu}>{t('navbar.quranSessions')}</a></li>
+                                {/* Quran Memorization Submenu */}
+                                <li className="dropdown-submenu">
+                                    <a
+                                        className={`dropdown-item dropdown-toggle ${activeSubmenu === 'quran' ? 'show' : ''}`}
+                                        href="#"
+                                        onClick={(e) => toggleSubmenu('quran', e)}
+                                    >
+                                        {t('navbar.quranSessions')}
+                                    </a>
+                                    <ul className={`dropdown-menu ${activeSubmenu === 'quran' ? 'show' : ''}`}>
+                                        <li><Link className="dropdown-item" to="/quran-boys-application" onClick={closeMenu}>{t('navbar.quranBoys')}</Link></li>
+                                        <li><Link className="dropdown-item" to="/quran-girls-application" onClick={closeMenu}>{t('navbar.quranGirls')}</Link></li>
+                                    </ul>
+                                </li>
+
                                 <li><a className="dropdown-item" href="#services" onClick={closeMenu}>{t('navbar.daycareServices')}</a></li>
                                 <li><a className="dropdown-item" href="#services" onClick={closeMenu}>{t('navbar.eduPrograms')}</a></li>
 
@@ -154,6 +168,21 @@ function Navbar() {
                                 {t('navbar.forms')}
                             </a>
                             <ul className="dropdown-menu">
+                                {/* Quran Memorization Forms Submenu */}
+                                <li className="dropdown-submenu">
+                                    <a
+                                        className={`dropdown-item dropdown-toggle ${activeSubmenu === 'quranForms' ? 'show' : ''}`}
+                                        href="#"
+                                        onClick={(e) => toggleSubmenu('quranForms', e)}
+                                    >
+                                        {t('navbar.quranMemorizationForms')}
+                                    </a>
+                                    <ul className={`dropdown-menu ${activeSubmenu === 'quranForms' ? 'show' : ''}`}>
+                                        <li><a className="dropdown-item" href="/forms/boys quran applicaiton form.docx" download onClick={closeMenu}>{t('navbar.quranBoysForm')}</a></li>
+                                        <li><a className="dropdown-item" href="/forms/girls quran applicaiton form.docx" download onClick={closeMenu}>{t('navbar.quranGirlsForm')}</a></li>
+                                    </ul>
+                                </li>
+
                                 {/* Membership Forms Submenu */}
                                 <li className="dropdown-submenu">
                                     <a
