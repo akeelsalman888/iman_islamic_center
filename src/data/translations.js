@@ -64,7 +64,8 @@ export const translations = {
             isha: "Isha",
             jummah1: "1st Jumu'ah",
             jummah2: "2nd Jumu'ah",
-            khutba: "Khutba"
+            khutba: "Khutba",
+            jummahPrayers: "Jumu'ah Prayers"
         },
         donate: {
             heading: "Support Iman Islamic Center",
