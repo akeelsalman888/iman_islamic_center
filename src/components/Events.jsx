@@ -39,12 +39,7 @@ const cardEvents = [
         titleKey: "events.quranTitle",
         descKey: "events.quranDesc",
         image: QuranImage,
-        detailImage: QuranCarrierImage,
-        link: "/event/quran",
-        links: [
-            { labelKey: "navbar.quranBoys", url: "/quran-boys-application" },
-            { labelKey: "navbar.quranGirls", url: "/quran-girls-application" }
-        ]
+        route: "/quran-memorization"
     },
     {
         titleKey: "events.daycareTitle",
@@ -56,11 +51,7 @@ const cardEvents = [
         titleKey: "events.marriageTitle",
         descKey: "events.marriageDesc",
         image: MarriageImage,
-        detailImage: MarriageDetailImage,
-        link: "/event/marriage",
-        links: [
-            { labelKey: "navbar.applyOnlineForm", url: "/marriage-certificate" }
-        ]
+        route: "/marriage-info"
     },
     {
         titleKey: "events.eduTitle",
@@ -173,12 +164,18 @@ function Events() {
                                     <div className="event-card-body">
                                         <h4>{t(event.titleKey)}</h4>
                                         <p>{t(event.descKey)}</p>
-                                        <button
-                                            className="btn btn-outline-primary btn-sm"
-                                            onClick={() => openModal(event)}
-                                        >
-                                            {t('events.learnMore')}
-                                        </button>
+                                        {event.route ? (
+                                            <Link to={event.route} className="btn btn-outline-primary btn-sm">
+                                                {t('events.learnMore')}
+                                            </Link>
+                                        ) : (
+                                            <button
+                                                className="btn btn-outline-primary btn-sm"
+                                                onClick={() => openModal(event)}
+                                            >
+                                                {t('events.learnMore')}
+                                            </button>
+                                        )}
                                     </div>
                                 </div>
                             </div>

@@ -1,0 +1,122 @@
+.marriage-info-container {
+    padding-top: 150px;
+    padding-bottom: 60px;
+    background-color: #f8f9fa;
+}
+
+.marriage-content-wrapper {
+    background: #DEE2E6;
+    /* Light gray background as requested */
+    padding: 50px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    /* For absolute positioning of rose */
+    overflow: hidden;
+    /* Prevent rose from bleeding out */
+}
+
+.header-images {
+    border-bottom: 2px solid #ced4da;
+    padding-bottom: 20px;
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+.header-logo {
+    height: 180px;
+    /* 1.5x original (120px) */
+    width: auto;
+}
+
+.header-right-icon {
+    height: 234px;
+    /* 1.3x original (180px) */
+    width: auto;
+}
+
+.rose-decoration {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    height: 240px;
+    width: auto;
+    opacity: 1;
+    mix-blend-mode: multiply;
+    /* Effectively removes white background */
+    filter: brightness(1.1) saturate(1.2) contrast(1.1);
+    /* Makes it shiny and vibrant */
+    pointer-events: none;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+}
+
+/* Ensure Rose stays on the same side in Arabic */
+html[dir="rtl"] .rose-decoration {
+    right: auto;
+    left: 20px;
+}
+
+.marriage-page-title {
+    color: #B8860B !important;
+    /* Premium Gold */
+    font-weight: 800 !important;
+    margin-top: 20px;
+}
+
+.marriage-text-section p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #8B7355;
+    /* Darker Gold for readability */
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+html[dir="rtl"] .marriage-text-section p {
+    text-align: right;
+}
+
+.lead-text {
+    font-size: 1.3rem !important;
+    font-weight: 600;
+    color: #B8860B !important;
+    /* Premium Gold */
+}
+
+.apply-btn {
+    min-width: 250px;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    background-color: #27569b;
+    border: none;
+    box-shadow: 0 4px 15px rgba(39, 86, 155, 0.2);
+    transition: all 0.3s ease;
+}
+
+.apply-btn:hover {
+    transform: translateY(-3px);
+    background-color: #1e447b;
+    box-shadow: 0 8px 25px rgba(39, 86, 155, 0.3);
+}
+
+@media (max-width: 768px) {
+    .marriage-content-wrapper {
+        padding: 25px;
+    }
+
+    .header-logo {
+        height: 105px;
+    }
+
+    .header-right-icon {
+        height: 130px;
+    }
+
+    .rose-decoration {
+        height: 120px;
+    }
+}

@@ -262,6 +262,38 @@ export const translations = {
             signaturePlaceholder: "Type your full name",
             agreeToTerms: "I have read and agree to the Program Policies and Acknowledgement",
             submitButton: "Submit Application"
+        },
+        marriageInfo: {
+            pageTitle: "Marriage Contract at Iman Islamic Center (IIC)",
+            para1: "At Iman Islamic Center (IIC), the marriage contract is regarded as a sacred covenant (‘aqd nikah) rooted in the guidance of the Qur’an and the authentic Sunnah of the Prophet Muhammad ﷺ. It is not merely a legal agreement, but a moral and spiritual bond founded upon mutual consent, responsibility, mercy, and righteousness.",
+            para2: "In accordance with the core principles and Islamic values outlined in the bylaws of IIC, all marriage contracts facilitated by the Center are conducted with a firm commitment to upholding Islamic law (Shariah), preserving the rights and obligations of both spouses, and promoting justice, transparency, and mutual respect. The process reflects the Center’s mission to strengthen families, protect the sanctity of marriage, and foster stable households grounded in faith and moral integrity.",
+            para3: "IIC ensures that each marriage contract is carried out properly and conscientiously, with clear acknowledgment of required elements such as lawful guardianship (wali), mutual acceptance (ijab wa‑qabul), agreed‑upon dowry (mahr), and reliable witnesses, while also encouraging couples to understand their shared responsibilities before Allah.",
+            para4: "Through this service, Iman Islamic Center seeks to support marriages that embody Islamic ethics, contribute positively to the community, and serve as a foundation for strong, God‑conscious families for generations to come."
+        },
+        quranMemorization: {
+            pageTitle: "Introduction to the Quran Carriers Sessions",
+            introPara1: "Building upon our experiences and reflections from previous summer activities, we recognize the need for a meaningful qualitative shift in how the Holy Quran is taught and learned. This initiative is rooted in the traditional and time-honored methods practiced by the Muslim Ummah throughout history—memorization, consistent review, and direct recitation to a qualified teacher—ensuring accuracy, discipline, and authenticity in learning.",
+            introPara2: "As part of this commitment, participants are expected to maintain regular attendance and fulfill their assigned responsibilities with seriousness and dedication. We also affirm our adherence to learning the Quran directly from the Arabic text and do not adopt the use of transliteration, as it does not preserve correct pronunciation or proper recitation and has been widely rejected by Islamic scholarship across generations.",
+            introPara3: "With this foundation, we are pleased to launch the Quranic Halaqas Program, an initiative dedicated to establishing a core group of students who memorize the Holy Quran from authentic Arabic copies, with proper Tajweed and Tarteel, while also gaining an understanding of its essential meanings.",
+            introPara4: "Our long-term vision is to nurture individuals who, by the permission of Allah, will serve the Islamic community of Lincoln as knowledgeable and principled leaders—capable of leading prayers, delivering Friday sermons, and promoting an authentic Sunni Salafi understanding of Islam that is firmly grounded in the Quran and Sunnah, free from religious innovations, extremism, or unwarranted leniency.",
+            visionTitle: "First: The Vision",
+            visionText: "To create a conscious Quranic generation that preserves its religious principles and values and spreads the Islamic call among themselves, their surroundings, and their communities.",
+            mechanismTitle: "Second: The Mechanism",
+            studentProgram: "The Student Program",
+            applyToday: "Apply Today",
+            rules: [
+                "Daily sessions throughout the year (4 days a week) for one to one and a half hours, with breaks during summer and winter vacations, and school and university exam periods.",
+                "Students who are not proficient in reading the Arabic Quran or have forgotten the Nooriyah Qaida will repeat these rules until they can read well, even if their reading fluency is initially weak.",
+                "During each session, a student who can read the Quran will recite new memorization by sight, with dictation provided by the teacher if needed.",
+                "The teacher will indicate homework for the next day in the “Follow-up Notebook,” along with an assessment of the student's level on that day.",
+                "The following day, during the session, the student will review the previous day's memorization from memory before continuing with the new memorization.",
+                "There will be periodic tests (semesterly or annually) to assess the student's memorization, with rewards provided by the program management.",
+                "The administration will distribute Arabic copies of the Quran to all students for recitation. The use of English copies of the Quran is prohibited for the reasons mentioned earlier, along with supplying follow-up notebooks and bags for supplies.",
+                "The stated monthly fee for participation in the Halaqas is $30. If the student also participates in the transportation program (bus), the fee will increase by $20, and family discounts will be considered.",
+                "Monthly trips will be organized to encourage students' continued participation in the program and to provide recreational opportunities in a supportive environment.",
+                "The targeted age range is from 7 years old (or 5 if the child is mature) up to 15 years for both genders, boys and girls.",
+                "There will be weekly programs focused on doctrine, jurisprudence, manners, behavior, etiquette, spirituality, and more."
+            ]
         }
     },
     ar: {
@@ -529,6 +561,38 @@ export const translations = {
             signaturePlaceholder: "اكتب اسمك الكامل",
             agreeToTerms: "لقد قرأت ووافقت على سياسات البرنامج والإقرار",
             submitButton: "إرسال الطلب"
+        },
+        marriageInfo: {
+            pageTitle: "عقد الزواج في مركز الإيمان الإسلامي (IIC)",
+            para1: "في مركز الإيمان الإسلامي (IIC)، يعتبر عقد الزواج ميثاقاً غليظاً (عقد نكاح) متجذراً في هدي القرآن والسنة النبوية الصحيحة للنبي محمد ﷺ. إنه ليس مجرد اتفاق قانوني، بل هو رابطة أخلاقية وروحية تقوم على التراضي والمسؤولية والرحمة والصلاح.",
+            para2: "وفقاً للمبادئ الأساسية والقيم الإسلامية الموضحة في اللوائح الداخلية لمركز الإيمان الإسلامي، يتم إجراء جميع عقود الزواج التي ييسرها المركز مع التزام راسخ بدعم الشريعة الإسلامية، والحفاظ على حقوق وواجبات كلا الزوجين، وتعزيز العدالة والشفافية والاحترام المتبادل. تعكس هذه العملية رسالة المركز في تقوية الأسر وحماية قدسية الزواج وتعزيز بيوت مستقرة تقوم على الإيمان والنزاهة الأخلاقية.",
+            para3: "يضمن مركز الإيمان الإسلامي تنفيذ كل عقد زواج بشكل صحيح وبضمير حي، مع الاعتراف الواضح بالعناصر المطلوبة مثل الولاية الشرعية (الولي)، والقبول المتبادل (الإيجاب والقبول)، والمهر المتفق عليه (المهر)، والشهود الموثوق بهم، مع تشجيع الأزواج أيضاً على فهم مسؤولياتهم المشتركة أمام الله.",
+            para4: "من خلال هذه الخدمة، يسعى مركز الإيمان الإسلامي إلى دعم الزيجات التي تجسد الأخلاق الإسلامية، وتساهم بشكل إيجابي في المجتمع، وتكون بمثابة أساس لعائلات قوية واعية لله للأجيال القادمة."
+        },
+        quranMemorization: {
+            pageTitle: "مقدمة لدورات حامل القرآن",
+            introPara1: "انطلاقاً من تجاربنا وتأملاتنا في الأنشطة الصيفية السابقة ، فإننا ندرك الحاجة إلى تحول نوعي هادف في كيفية تعليم وتعلم القرآن الكريم. هذه المبادرة متجذرة في الأساليب التقليدية والعريقة التي مارستها الأمة الإسلامية عبر التاريخ - الحفظ والمراجعة المستمرة والتلاوة المباشرة على معلم مؤهل - مما يضمن الدقة والانضباط والأصالة في التعلم.",
+            introPara2: "كجزء من هذا الالتزام، يتوقع من المشاركين الحفاظ على الحضور المنتظم والوفاء بمسؤولياتهم المسندة إليهم بكل جدية وتفان. كما نؤكد التزامنا بتعلم القرآن مباشرة من النص العربي ولا نعتمد استخدام الترجمة الصوتية (الترانزليتريشن)، لأنها لا تحفظ النطق الصحيح أو التلاوة السليمة وقد رفضها علماء الإسلام على نطاق واسع عبر الأجيال.",
+            introPara3: "تأسيساً على ذلك ، يسرنا إطلاق برنامج الحلقات القرآنية ، وهي مبادرة مخصصة لتكوين مجموعة أساسية من الطلاب الذين يحفظون القرآن الكريم من المصاحف العربية الأصيلة ، مع التجويد والترتيل السليم ، مع اكتساب فهم لمعانيه الأساسية.",
+            introPara4: "رؤيتنا طويلة المدى هي تنشئة أفراد، بإذن الله، يخدمون المجتمع الإسلامي في لينكولن كقادة مطلعين ومبدئيين - قادرين على إمامة الصلوات، وإلقاء خطب الجمعة، وتعزيز فهم سني سلفي أصيل للإسلام يرتكز بقوة على الكتاب والسنة، بعيداً عن البدع الدينية أو التطرف أو التساهل غير المبرر.",
+            visionTitle: "أولاً: الرؤية",
+            visionText: "خلق جيل قرآني واعٍ يحافظ على مبادئه وقيمه الدينية وينشر الدعوة الإسلامية بين أنفسهم ومحيطهم ومجتمعاتهم.",
+            mechanismTitle: "ثانياً: الآلية",
+            studentProgram: "برنامج الطلاب",
+            applyToday: "قدم اليوم",
+            rules: [
+                "جلسات يومية طوال العام (4 أيام في الأسبوع) لمدة ساعة إلى ساعة ونصف ، مع استراحات خلال العطلات الصيفية والشتوية وفترات امتحانات المدارس والجامعات.",
+                "الطلاب الذين لا يجيدون قراءة القرآن باللغة العربية أو نسوا القاعدة النورانية سيعيدون هذه القواعد حتى يتمكنوا من القراءة جيداً، حتى لو كان طلاقة قراءتهم ضعيفة في البداية.",
+                "خلال كل جلسة، سيقوم الطالب الذي يمكنه قراءة القرآن بتلاوة الحفظ الجديد نظراً، مع تلقين المعلم إذا لزم الأمر.",
+                "سيقوم المعلم بتحديد الواجب المنزلي لليوم التالي في \"دفتر المتابعة\"، إلى جانب تقييم لمستوى الطالب في ذلك اليوم.",
+                "في اليوم التالي، خلال الجلسة، سيقوم الطالب بمراجعة حفظ اليوم السابق من الذاكرة قبل البدء في الحفظ الجديد.",
+                "ستكون هناك اختبارات دورية (فصلية أو سنوية) لتقييم حفظ الطالب، مع تقديم مكافآت من قبل إدارة البرنامج.",
+                "ستقوم الإدارة بتوزيع مصاحف عربية على جميع الطلاب للتلاوة. يحظر استخدام المصاحف الإنجليزية للأسباب المذكورة سابقاً، إلى جانب توفير دفاتر المتابعة والحقائب للمستلزمات.",
+                "رسوم الاشتراك الشهري المعلنة في الحلقات هي 30 دولاراً. إذا شارك الطالب أيضاً في برنامج النقل (الحافلة) ، فستزيد الرسوم بمقدار 20 دولاراً ، وسيتم النظر في خصومات عائلية.",
+                "سيتم تنظيم رحلات شهرية لتشجيع استمرار مشاركة الطلاب في البرنامج وتوفير فرص ترفيهية في بيئة داعمة.",
+                "الفئة العمرية المستهدفة من سن 7 سنوات (أو 5 سنوات إذا كان الطفل ناضجاً) حتى 15 سنة لكلا الجنسين من بنين وبنات.",
+                "ستكون هناك برامج أسبوعية تركز على العقيدة والفقه والأخلاق والسلوك والآداب والروحانيات وغيرها."
+            ]
         }
     }
 };

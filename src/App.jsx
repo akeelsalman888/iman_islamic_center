@@ -13,6 +13,8 @@ import ContactPage from "./components/ContactPage";
 import MarriageCertificate from "./components/MarriageCertificate";
 import QuranBoysApplication from "./components/QuranBoysApplication";
 import QuranGirlsApplication from "./components/QuranGirlsApplication";
+import QuranMemorization from "./components/QuranMemorization";
+import MarriageInfo from "./components/MarriageInfo";
 
 function App() {
   return (
@@ -43,6 +45,8 @@ function App() {
         <Route path="/marriage-certificate" element={<MarriageCertificate />} />
         <Route path="/quran-boys-application" element={<QuranBoysApplication />} />
         <Route path="/quran-girls-application" element={<QuranGirlsApplication />} />
+        <Route path="/quran-memorization" element={<QuranMemorization />} />
+        <Route path="/marriage-info" element={<MarriageInfo />} />
         <Route path="/event/:id" element={<Events />} />
       </Routes>
       <Footer />

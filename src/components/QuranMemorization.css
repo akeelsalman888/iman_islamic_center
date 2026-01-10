@@ -1,0 +1,142 @@
+.quran-page-container {
+    padding-top: 150px;
+    /* Increased padding to prevent overlap */
+    padding-bottom: 60px;
+    background-color: #f8f9fa;
+}
+
+.quran-content-wrapper {
+    background: #DEE2E6;
+    /* Light gray background */
+    padding: 50px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.header-images {
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 20px;
+    display: flex !important;
+    flex-direction: row !important;
+    /* Keep same order in English and Arabic */
+}
+
+.header-logo {
+    height: 140px;
+    /* Increased size (~1.5x - 2x) */
+    width: auto;
+}
+
+.header-program-logo {
+    height: 180px;
+    /* Increased size (~1.5x - 2x) */
+    width: auto;
+}
+
+.header-middle-icon {
+    height: 140px;
+    width: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.quran-page-title {
+    color: #2e8b57 !important;
+    /* SeaGreen color */
+    font-weight: 800 !important;
+}
+
+.quran-text-section p,
+.quran-section p,
+.program-list li {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #2e8b57;
+    /* Changed to green */
+    margin-bottom: 20px;
+}
+
+.lead-text {
+    font-size: 1.25rem !important;
+    font-weight: 500;
+    color: #2e8b57 !important;
+    /* Changed to green */
+}
+
+.section-subheading {
+    color: #2e8b57;
+    /* Changed to green */
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    border-left: 5px solid #2e8b57;
+    /* Changed to green */
+    /* English LTR border */
+    padding-left: 15px;
+    /* English LTR padding */
+}
+
+/* RTL Support for subheading */
+html[dir="rtl"] .section-subheading {
+    border-left: none;
+    border-right: 5px solid #2e8b57;
+    /* Changed to green */
+    padding-left: 0;
+    padding-right: 15px;
+}
+
+.program-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #2e8b57;
+    background-color: rgba(46, 139, 87, 0.1);
+    /* Subtle green tint */
+    padding: 10px 15px;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+.program-list {
+    padding-left: 20px;
+}
+
+html[dir="rtl"] .program-list {
+    padding-left: 0;
+    padding-right: 20px;
+}
+
+.program-list li {
+    margin-bottom: 15px;
+    padding-left: 10px;
+}
+
+html[dir="rtl"] .program-list li {
+    padding-left: 0;
+    padding-right: 10px;
+}
+
+.apply-btn {
+    min-width: 250px;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(39, 86, 155, 0.2);
+    transition: all 0.3s ease;
+}
+
+.apply-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(39, 86, 155, 0.3);
+}
+
+@media (max-width: 768px) {
+    .quran-content-wrapper {
+        padding: 25px;
+    }
+
+    .section-subheading {
+        font-size: 1.5rem;
+    }
+}
