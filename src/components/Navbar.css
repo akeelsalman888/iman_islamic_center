@@ -195,6 +195,16 @@ html[dir="rtl"] .navbar-nav .nav-link {
   box-shadow: 0 6px 15px rgba(39, 86, 155, 0.15);
 }
 
+/* Mobile language toggle positioning */
+@media (max-width: 1199px) {
+  .language-toggle-top {
+    top: 10px;
+    font-size: 0.75rem !important;
+    padding: 4px 12px !important;
+    min-width: 140px !important;
+  }
+}
+
 html[dir="rtl"] .language-toggle {
   margin-right: 15px !important;
 }
@@ -441,29 +451,32 @@ html[dir="rtl"] .dropdown-submenu>.dropdown-menu {
 
   .custom-navbar .container-fluid {
     padding-left: 0 !important;
-    padding-right: 15px !important;
-    /* Keep space for buttons on the right */
+    padding-right: 0 !important;
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
+    justify-content: space-between;
+    position: relative;
   }
 
   .custom-navbar {
-    height: 170px;
-    /* Fit 160px logo */
+    height: 120px;
+    /* Fit 100px logo with padding */
   }
 
   .navbar-logo {
-    height: 160px;
-    /* Reduced for mobile */
+    height: 100px;
+    /* Smaller for mobile */
     width: auto;
     margin-right: 0 !important;
     margin-left: 0 !important;
     transform: none !important;
   }
 
-  /* RTL Mobile Logo - Reset mirroring */
+  /* RTL Mobile Logo - Keep same size as English */
   [dir="rtl"] .navbar-logo {
+    height: 100px !important;
+    width: auto !important;
     margin-left: 10px !important;
     margin-right: 10px !important;
     transform: none !important;
@@ -490,10 +503,18 @@ html[dir="rtl"] .dropdown-submenu>.dropdown-menu {
     padding: 6px 8px !important;
     border-radius: 12px !important;
     background: rgba(255, 255, 255, 0.3) !important;
+    margin-right: 10px !important;
   }
 
   .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+  }
+
+  /* RTL Hamburger - Keep same size */
+  [dir="rtl"] .navbar-toggler {
+    padding: 6px 8px !important;
+    width: auto !important;
+    height: auto !important;
   }
 
   /* Structural Stacking for Portrait Expansion */
@@ -579,8 +600,8 @@ html[dir="rtl"] .dropdown-submenu>.dropdown-menu {
   }
 
   .custom-navbar {
-    height: 170px;
-    /* Fit 160px logo */
+    height: 120px;
+    /* Fit 100px logo with padding */
   }
 
   .navbar-logo {
@@ -618,14 +639,14 @@ body {
 
 @media (max-width: 1399px) {
   body {
-    padding-top: 170px;
+    padding-top: 140px;
     /* Adjust for tablet/laptop navbar height */
   }
 }
 
 @media (max-width: 767px) {
   body {
-    padding-top: 170px;
+    padding-top: 130px;
     /* Adjust for mobile navbar height */
   }
 }

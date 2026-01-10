@@ -4,6 +4,7 @@ import { FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn, FaPhoneAlt, FaEnvelope
 import { IoLanguage } from "react-icons/io5";
 import { useLanguage } from "../context/LanguageContext";
 import logo from "../assets/logo.png";
+import arabicLogo from "../assets/arabic_logo.png";
 import "./Navbar.css";
 
 function Navbar() {
@@ -33,7 +34,7 @@ function Navbar() {
                 {/* Brand Section */}
                 <Link className="navbar-brand d-flex align-items-center" to="/" onClick={closeMenu}>
                     <img
-                        src={logo}
+                        src={language === 'ar' ? arabicLogo : logo}
                         alt="Iman Islamic Center Logo"
                         className="navbar-logo"
                     />
