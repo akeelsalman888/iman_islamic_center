@@ -4,25 +4,29 @@ import { useLanguage } from "../context/LanguageContext";
 import "./Events.css";
 import "./EventsModal.css";
 import "./EventCards.css";
-import TaraweehImage from "../assets/Taraweeh20226.JPG";
+import Taraweh1Image from "../assets/taraweh1.png";
+import Taraweh2Image from "../assets/taraweh2.JPG";
+import Openings1Image from "../assets/openings1.PNG";
+import Openings2Image from "../assets/openings2.jpeg";
 import QuranImage from "../assets/quran_memorization.png";
 import DaycareImage from "../assets/daycare.png";
 import MarriageImage from "../assets/marriage_contract.png";
 import EducationImage from "../assets/educational_programs.png";
-import GrandOpeningImage from "../assets/grand_opening.jpeg";
 
 // Carousel Events (Grand Opening and Taraweeh only)
 const carouselEvents = [
     {
         titleKey: "events.grandOpeningTitle",
         descKey: "events.grandOpeningDesc",
-        image: GrandOpeningImage,
+        image: Openings1Image,
+        detailImage: Openings2Image,
         link: "/event/grand-opening"
     },
     {
         titleKey: "events.taraweehTitle",
         descKey: "events.taraweehDesc",
-        image: TaraweehImage,
+        image: Taraweh1Image,
+        detailImage: Taraweh2Image,
         link: "/event/taraweeh"
     }
 ];
@@ -61,11 +65,11 @@ function Events() {
     const [modalOpen, setModalOpen] = useState(false);
     const [modalImage, setModalImage] = useState(null);
 
-    // Auto-advance slides every 5 seconds
+    // Auto-advance slides every 8 seconds (slower)
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % carouselEvents.length);
-        }, 5000);
+        }, 8000);
         return () => clearInterval(interval);
     }, []);
 
@@ -114,7 +118,7 @@ function Events() {
                                     <p>{t(event.descKey)}</p>
                                     <button
                                         className="btn btn-primary"
-                                        onClick={() => openModal(event.image)}
+                                        onClick={() => openModal(event.detailImage || event.image)}
                                     >
                                         {t('events.learnMore')}
                                     </button>
