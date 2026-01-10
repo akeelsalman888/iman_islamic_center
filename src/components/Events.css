@@ -58,10 +58,6 @@
     padding: 0;
 }
 
-/* Mirror Event Images in RTL */
-html[dir="rtl"] .carousel-image {
-    transform: scaleX(-1);
-}
 
 /* Carousel Caption Overlay */
 .carousel-caption {
@@ -150,6 +146,15 @@ html[dir="rtl"] .carousel-image {
 
 .carousel-arrow-right {
     right: 20px;
+}
+
+/* Flip arrows in RTL */
+html[dir="rtl"] .carousel-arrow {
+    transform: translateY(-50%) scaleX(-1);
+}
+
+html[dir="rtl"] .carousel-arrow:hover {
+    transform: translateY(-50%) scaleX(-1) scale(1.1);
 }
 
 /* Dot Indicators */
