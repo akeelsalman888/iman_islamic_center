@@ -1,23 +1,31 @@
 .custom-navbar {
-  background-color: #ffffff !important;
-  /* Pure White */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 2px solid #27569b;
-  /* Client Logo Blue Border */
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
-  /* Softer shadow for white bg */
-  z-index: 999;
+  /* Very light blue-tinted white background */
+  background: rgba(248, 252, 255, 0.92) !important;
+  backdrop-filter: blur(15px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(15px) saturate(160%) !important;
+  border-bottom: 1.5px solid rgba(39, 86, 155, 0.12);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
+  z-index: 1000;
   width: 100%;
-
-  /* FIXED HEIGHT - Large enough to hold the logo */
   height: 220px;
   padding-top: 0;
   padding-bottom: 0;
   display: flex;
   align-items: center;
-  /* Center everything vertically */
   overflow: visible;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Subtle inner glow for extra premium feel */
+.custom-navbar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  pointer-events: none;
 }
 
 /* =========================
@@ -46,13 +54,25 @@
   /* mix-blend-mode removed for white bg */
 }
 
+/* RTL logo matches English logo styling exactly */
+html[dir="rtl"] .navbar-logo {
+  height: 200px;
+  width: auto;
+  margin-right: 25px;
+  margin-left: 15px;
+  transform: none;
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
 .navbar-logo:hover {
-  transform: scale(1.02);
+  transform: scale(1.05);
 }
 
 /* Maintain consistency on Hover in RTL */
 html[dir="rtl"] .navbar-logo:hover {
-  transform: scale(1.02);
+  transform: scale(1.05) !important;
 }
 
 /* =========================
@@ -64,21 +84,18 @@ html[dir="rtl"] .navbar-logo:hover {
 }
 
 .navbar-nav .nav-link {
-  color: #333 !important;
-  /* Dark grey for softer look on white */
+  color: #1a1a1a !important;
   font-weight: 600;
-  /* Semi-bold for space efficiency */
   margin-right: 0.5rem;
-  /* Increased margin slightly for bigger links */
   font-size: 0.95rem;
-  /* Slightly reduced to balance with logo */
   text-shadow: none;
-  /* Removed shadow for crisp text */
   position: relative;
-  transition: all 0.25s ease;
+  transition: all 0.3s ease;
+  padding: 8px 15px !important;
+  border-radius: 8px;
 }
 
-/* Arabic navbar links – larger for readability */
+/* Maintain consistency for Arabic */
 html[dir="rtl"] .navbar-nav .nav-link {
   font-size: 1.1rem;
   font-weight: 600;
@@ -87,8 +104,27 @@ html[dir="rtl"] .navbar-nav .nav-link {
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link.active {
   color: #27569b !important;
-  /* Brand Blue on hover */
-  transform: translateY(-1px);
+  background: rgba(39, 86, 155, 0.05);
+}
+
+/* Animated dot indicator for active/hover */
+.navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  background: #27569b;
+  border-radius: 50%;
+  transform: translateX(-50%) scale(0);
+  transition: transform 0.3s ease;
+  pointer-events: none;
+}
+
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after {
+  transform: translateX(-50%) scale(1);
 }
 
 /* Remove dropdown arrows (carets) for a modern look */
@@ -125,7 +161,40 @@ html[dir="rtl"] .navbar-nav .nav-link {
 /* =========================
    Social + Phone icons
 ========================= */
-/* Arabic only: Add gap between social icons and language switcher */
+/* Language Toggle modern styling */
+.language-toggle-top {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #1a1a1a !important;
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  border-radius: 100px !important;
+  padding: 6px 20px !important;
+  min-width: 180px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  text-decoration: none !important;
+}
+
+.language-toggle-top:hover {
+  background: #ffffff !important;
+  border-color: #27569b !important;
+  color: #27569b !important;
+  transform: translateX(-50%) translateY(-2px) !important;
+  box-shadow: 0 6px 15px rgba(39, 86, 155, 0.15);
+}
+
 html[dir="rtl"] .language-toggle {
   margin-right: 15px !important;
 }
@@ -263,34 +332,31 @@ html[dir="rtl"] .social-icon.phone-icon svg {
 
 /* Dropdown styling */
 .custom-navbar .dropdown-menu {
-  border: 1px solid rgba(0, 0, 0, 0.05) !important;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
-  border-radius: 12px !important;
-  background-color: #f8f9fa !important;
-  /* Soft Light Grey */
-  padding: 10px 0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 16px !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px) !important;
+  padding: 8px !important;
   overflow: visible !important;
+  /* NO MARGIN TOP to keep hover bridge intact */
+  margin-top: 0 !important;
 }
 
 .custom-navbar .dropdown-item {
   font-weight: 600 !important;
-  color: #000000 !important;
-  /* Black text for light background */
-  padding: 12px 20px !important;
-  margin: 4px 10px !important;
-  border-radius: 8px !important;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
-  border-left: none !important;
-  /* Removed static border */
+  color: #1a1a1a !important;
+  padding: 10px 18px !important;
+  margin: 2px 0 !important;
+  border-radius: 10px !important;
+  transition: all 0.2s ease !important;
 }
 
 .custom-navbar .dropdown-item:hover {
-  background-color: #e3f2fd !important;
-  /* Light blue tint */
-  color: #27569b !important;
-  transform: translateX(8px) scale(1.02);
-  /* Modern slide and slight grow */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  background-color: #27569b !important;
+  color: #ffffff !important;
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(39, 86, 155, 0.15);
 }
 
 /* =========================================
@@ -396,12 +462,12 @@ html[dir="rtl"] .dropdown-submenu>.dropdown-menu {
     transform: none !important;
   }
 
-  /* RTL Mobile Logo */
+  /* RTL Mobile Logo - Reset mirroring */
   [dir="rtl"] .navbar-logo {
-    margin-left: 0 !important;
-    margin-right: -10px !important;
-    /* Adjusted for specific Arabic logo */
+    margin-left: 10px !important;
+    margin-right: 10px !important;
     transform: none !important;
+    display: block !important;
   }
 
   /* Ensure buttons stay visible and aligned */
@@ -521,6 +587,10 @@ html[dir="rtl"] .dropdown-submenu>.dropdown-menu {
     margin-left: 10px;
     margin-right: 15px;
     height: 160px;
+  }
+
+  /* Prevent mirror in laptop RTL */
+  html[dir="rtl"] .navbar-logo {
     transform: none;
   }
 
