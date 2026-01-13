@@ -1,45 +1,42 @@
-A premium, fully responsive website for Iman Islamic Center, built with React and Vite. This platform is designed to connect the community, provide essential religious services, and offer a modern user experience.
+A premium, fully responsive website for Iman Islamic Center, built with React and Vite. This platform is designed to connect the community, provide essential religious services, and offer a modern, bilingual user experience.
 
 **🌐 Live Site:** [iman-islamic-center.vercel.app](https://iman-islamic-center.vercel.app/) (Draft/Preview)
 **🔗 Repository:** [github.com/akeelsalman888/iman_islamic_center](https://github.com/akeelsalman888/iman_islamic_center)
 
 ## ✨ Key Features
 
-*   **Premium Visual Identity**: High-end modern design using the **'Outfit'** typography and a professional **#27569b** color palette.
-*   **Dynamic Hero Section**: Stunning architectural visuals with direct "Donate" action and localized branding for Lincoln, NE.
-*   **Real-time Prayer Times**: Integrated Hijri and Gregorian calendar dates with styled daily and Jumu'ah iqamah tables.
-*   **Interactive Reservation System**: Dedicated "Book a Visit" system for visitors to schedule meetings with the team.
-*   **Dedicated Contact Center**: A separate, full-featured contact page with modern form validation and glassmorphism styling.
-*   **Responsive Navigation**: Optimized navbar featuring a unique "Action Pod" for quick contact access.
-*   **Event Management**: Browse upcoming and past community events with dedicated detail views.
-*   **Digital Marriage Services**: Comprehensive two-step digitized marriage application with integrated appointment scheduling (Masjid or Home visit).
+*   **🌍 Bilingual Excellence**: Full support for **English and Arabic** languages with automated RTL (Right-to-Left) layout adjustments and custom branding (localized Arabic logo).
+*   **🌓 Adaptive Theme System**: Integrated **Light and Dark mode** switcher with persistent user preferences and smooth transitions.
+*   **🕋 Premium Visual Identity**: High-end modern design using the **'Outfit'** typography, glassmorphism elements, and professional hover effects.
+*   **⏳ Real-time Prayer Times**: Dynamic Hijri and Gregorian calendar integration with beautifully styled daily and Jumu'ah iqamah tables.
+*   **💍 Advanced Marriage Services**: Comprehensive multi-step digital marriage application including appointment scheduling for Masjid or Home visits.
+*   **📖 Quran Memorization Center**: Dedicated portals for Boys and Girls applications, including integrated **Program Policies** and legal acknowledgments.
+*   **📊 Organized Forms Hub**: Reorganized navigation with nested submenus for Membership and Donation forms.
+*   **📱 Mobile Optimized**: Fully responsive architecture with specialized mobile adjustments for logos, ribbons, and navigation pods.
 
 ## 📂 Project Structure
 
 ```text
 iman_islamic_center/
 │
-├─ public/
-│   └─ forms/                      # Downloadable PDF/DOCX forms
-│
 ├─ src/
-│   ├─ assets/                     # High-resolution images and logos
+│   ├─ assets/                     # High-resolution branding and assets
+│   ├─ context/                    # Language and Theme Context providers
 │   ├─ components/
-│   │   ├─ Navbar.jsx              # Optimized Navbar with Action Pod
+│   │   ├─ Navbar.jsx              # Bilingual Navbar with Nested Dropdowns
 │   │   ├─ Hero.jsx                # Cinematic entry section
+│   │   ├─ PrayerTimes.jsx         # Dynamic iqamah scheduling
+│   │   ├─ MarriageCertificate.jsx # Multi-step digital application
+│   │   ├─ QuranMemorization.jsx   # Center for educational services
+│   │   ├─ ProgramPolicies.jsx     # Policy and legal acknowledgement module
 │   │   ├─ Reservation.jsx         # Modern visiting/booking system
 │   │   ├─ ContactPage.jsx         # Dedicated Contact Hub
-│   │   ├─ Contact.jsx             # Reusable Contact Form component
-│   │   ├─ PrayerTimes.jsx         # Dynamic iqamah scheduling
 │   │   ├─ Events.jsx              # Community events viewer
-│   │   ├─ Donate.jsx              # High-contrast donation section
-│   │   ├─ MarriageCertificate.jsx # Two-step digital marriage application
-│   │   ├─ DownloadForms.jsx       # Downloadable resources center
 │   │   └─ Footer.jsx              # Branded site footer
 │   │
-│   ├─ App.jsx                     # Centralized Routing
-│   ├─ index.css                   # Global Design System
-│   └─ main.jsx                    # Entry point
+│   ├─ App.jsx                     # Centralized Routing & Layout
+│   ├─ index.css                   # Global Design System & Variables
+│   └─ main.jsx                    # Application Entry point
 │
 ├─ package.json                    # Configuration & Dependencies
 └─ README.md                       # Documentation
@@ -48,10 +45,10 @@ iman_islamic_center/
 ## 🚀 Technologies Used
 
 *   **Core**: [React 19](https://react.dev/), [Vite](https://vitejs.dev/)
+*   **State Management**: React Context API (Language & Theme)
 *   **Routing**: [React Router 7](https://reactrouter.com/)
-*   **Icons**: [React Icons](https://react-icons.github.io/react-icons/)
 *   **Styling**: Vanilla CSS (Custom Design System), [Bootstrap 5](https://getbootstrap.com/)
-*   **Dates**: [Moment.js](https://momentjs.com/) with Hijri support
+*   **Dates**: [Moment.js](https://momentjs.com/) & [Moment-Hijri](https://github.com/x-68/moment-hijri)
 
 ## 🛠️ Installation & Setup
 
@@ -71,11 +68,6 @@ iman_islamic_center/
    npm run dev
    ```
 
-4. **Production Build**
-   ```bash
-   npm run build
-   ```
-
 ## 🎨 Color Palette & Design System
 
 | Element | Color |
@@ -83,16 +75,15 @@ iman_islamic_center/
 | **Primary Theme** | `#27569b` |
 | **Secondary Accord** | `#1e467f` |
 | **Highlight Blue** | `#87CEEB` |
-| **Typography** | `Outfit`, `Poppins` |
+| **Typography** | `Outfit`, `Poppins`, `Inter` |
 
 ## 📝 Notes for the Client
 
-*   **SEO Optimized**: Semantic HTML and descriptive meta-tags are used throughout the site.
-*   **High Performance**: Built with Vite for ultra-fast loading speeds.
-*   **Ready for Vercel**: Fully configured for one-click deployment to Vercel or Netlify.
-*   **User Friendly**: All forms include visual feedback and modern validation states.
-*   **Scalable**: New events or forms can be added easily by updating the respective JSON or assets.
-*   **Mobile Fixed**: Optimized hamburger menu and dropdowns for Android and iOS mobile browsers (Jan 2026 update).
+*   **SEO Optimized**: Semantic HTML and descriptive meta-tags implemented for better search visibility.
+*   **High Performance**: Leverages Vite for near-instant loading and optimized asset delivery.
+*   **Scalable Architecture**: Flexible structure allows for easy addition of new languages, themes, or services.
+*   **Accessibility First**: Optimized for both LTR and RTL reading patterns, ensuring a comfortable experience for all users.
+*   **Modern Validation**: All forms include real-time visual feedback and refined error states.
 
 ---
-*Created with care for Iman Islamic Center.*
+*Created with care for Iman Islamic Center (Updated Jan 2026).*
