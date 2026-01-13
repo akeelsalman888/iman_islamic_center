@@ -275,3 +275,40 @@ html[dir="rtl"] .program-list li {
         padding: 12px 20px;
     }
 }
+
+.policy-list {
+    list-style-type: none;
+    padding-left: 0 !important;
+}
+
+.policy-list li {
+    position: relative;
+    padding-left: 35px !important;
+    margin-bottom: 15px !important;
+    line-height: 1.6;
+}
+
+.policy-list li::before {
+    content: "\2022";
+    color: #27569b;
+    /* Brand Blue */
+    font-weight: bold;
+    font-size: 1.8rem;
+    position: absolute;
+    left: 8px;
+    top: -5px;
+}
+
+html[dir="rtl"] .policy-list {
+    padding-right: 0 !important;
+}
+
+html[dir="rtl"] .policy-list li {
+    padding-left: 0 !important;
+    padding-right: 35px !important;
+}
+
+html[dir="rtl"] .policy-list li::before {
+    left: auto;
+    right: 8px;
+}

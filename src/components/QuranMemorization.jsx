@@ -64,6 +64,16 @@ function QuranMemorization() {
                         </ol>
                     </div>
 
+                    {/* Policies Section */}
+                    <div className="quran-section mb-5">
+                        <h2 className="section-subheading">{t('quranMemorization.policiesTitle')}</h2>
+                        <ul className="program-list policy-list">
+                            {t('quranMemorization.policies', { returnObjects: true }).map((policy, index) => (
+                                <li key={index}>{policy}</li>
+                            ))}
+                        </ul>
+                    </div>
+
                     {/* Action Buttons */}
                     <div className="action-buttons-container text-center mt-5">
                         <h3 className="mb-4">{t('quranMemorization.applyToday')}</h3>

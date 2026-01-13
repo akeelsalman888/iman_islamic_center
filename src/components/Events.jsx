@@ -8,7 +8,7 @@ import Taraweh1Image from "../assets/taraweh1.png";
 import Taraweh2Image from "../assets/taraweh2.JPG";
 import Openings1Image from "../assets/openings1.PNG";
 import Openings2Image from "../assets/openings2.jpeg";
-import QuranImage from "../assets/quran_memorization.png";
+import QuranCarriersImage from "../assets/quran_carriers_sessions.JPG";
 import DaycareImage from "../assets/daycare.png";
 import MarriageImage from "../assets/marriage_contract.png";
 import EducationImage from "../assets/educational_programs.png";
@@ -38,8 +38,9 @@ const cardEvents = [
     {
         titleKey: "events.quranTitle",
         descKey: "events.quranDesc",
-        image: QuranImage,
-        route: "/quran-memorization"
+        image: QuranCarriersImage,
+        route: "/quran-memorization",
+        imageClassName: "quran-card-custom-img"
     },
     {
         titleKey: "events.daycareTitle",
@@ -159,7 +160,11 @@ function Events() {
                             <div key={index} className="col-md-6 col-lg-3">
                                 <div className="event-card">
                                     <div className="event-card-image">
-                                        <img src={event.image} alt={t(event.titleKey)} />
+                                        <img
+                                            src={event.image}
+                                            alt={t(event.titleKey)}
+                                            className={event.imageClassName || ""}
+                                        />
                                     </div>
                                     <div className="event-card-body">
                                         <h4>{t(event.titleKey)}</h4>
