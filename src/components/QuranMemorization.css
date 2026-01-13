@@ -37,12 +37,16 @@
     }
 
     .header-program-logo {
-        height: 460px;
-        /* 2x original size */
+        height: 230px;
+        /* Original 1x size */
         width: auto;
-        margin-right: 280px;
-        margin-left: 0;
-        margin-top: -113px;
+        position: absolute;
+        left: 150px;
+        /* Moved 50px left from 200px */
+        top: 20px;
+        z-index: 10;
+        /* Ensures it stays on top and visible */
+        margin: 0;
     }
 
     .header-middle-icon {
@@ -62,9 +66,7 @@
     /* Arabic (RTL) Swapping for Desktop */
     html[dir="rtl"] .header-images {
         justify-content: flex-start !important;
-        /* Forces both groups to the Right side in RTL */
-        gap: 20px;
-        /* Base gap between Ribbon and Icon group */
+        /* Forces Ribbon to the Right side in RTL (Start) */
     }
 
     html[dir="rtl"] .header-logo {
@@ -74,9 +76,10 @@
     }
 
     html[dir="rtl"] .header-program-logo {
-        margin-right: 0;
-        margin-left: 30px;
-        /* Small distance to keep them together as requested */
+        left: auto;
+        right: 150px;
+        /* Swapped to Right (mirrors LTR left: 150px) */
+        margin: 0;
     }
 
     html[dir="rtl"] .header-middle-icon {
@@ -95,37 +98,51 @@
 /* Mobile/Tablet Layout (Max-Width 1024px) */
 @media (max-width: 1024px) {
     .header-logo {
-        display: none !important;
-        /* Hide ribbon */
+        display: block !important;
+        /* Show ribbon on mobile */
+        height: 70px;
+        width: auto;
+        position: static;
+        margin: 0;
+    }
+
+    .header-images {
+        flex-direction: row !important;
+        /* Row layout */
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        /* Start from left */
+        min-height: auto;
+        gap: 0;
+        /* Removing gap to control spacing specifically */
+        margin-top: -20px !important;
+        padding-bottom: 20px;
+    }
+
+    .header-right-icons {
+        display: flex;
+        flex-direction: row;
+        /* side-by-side icons */
+        align-items: center;
+        flex: 1;
+        /* Take up remaining space */
+        justify-content: space-between;
+        /* Push items to edges of this container */
+        margin-left: 0px;
+        /* Grouped directly next to Ribbon */
     }
 
     .header-program-logo {
-        height: 150px;
+        height: 140px;
+        /* 1x bigger */
         width: auto;
-        margin: 0 0 20px 0;
-        /* Reset margins */
+        margin: 0 !important;
     }
 
     .header-middle-icon {
         height: 100px;
         width: auto;
-        margin: 0;
-        /* Reset margins */
-    }
-
-    .header-images {
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-        min-height: auto;
-        gap: 20px;
-    }
-
-    .header-right-icons {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
+        margin: 0 !important;
     }
 }
 
