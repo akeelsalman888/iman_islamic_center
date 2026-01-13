@@ -85,7 +85,10 @@
 }
 
 .policies-list {
-    padding-left: 25px;
+    padding-left: 0;
+    /* Remove default padding */
+    list-style: none;
+    /* Remove default numbers */
     line-height: 1.8;
     color: #333;
 }
@@ -93,6 +96,31 @@
 .policies-list li {
     margin-bottom: 12px;
     font-size: 0.95rem;
+    position: relative;
+    padding-left: 30px;
+    /* Space for the custom icon */
+}
+
+/* Custom Arrow Icon */
+.policies-list li::before {
+    content: "➤";
+    /* Modern Arrow */
+    position: absolute;
+    left: 0;
+    top: 2px;
+    color: #27569b;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* Hover Effect for List Items */
+.policies-list li:hover {
+    background-color: rgba(39, 86, 155, 0.05);
+    /* Very subtle blue tint */
+    border-radius: 6px;
+    padding-left: 35px;
+    /* Slight movement on hover */
+    transition: all 0.2s ease;
 }
 
 .acknowledgement-text {
@@ -140,6 +168,29 @@ html[dir="rtl"] .form-label {
 
 html[dir="rtl"] .form-control {
     text-align: right;
+}
+
+/* RTL Support for Custom List */
+html[dir="rtl"] .policies-list {
+    padding-right: 0;
+}
+
+html[dir="rtl"] .policies-list li {
+    padding-right: 30px;
+    padding-left: 0;
+}
+
+html[dir="rtl"] .policies-list li::before {
+    left: auto;
+    right: 0;
+    transform: scaleX(-1);
+    /* Mirror the arrow */
+}
+
+html[dir="rtl"] .policies-list li:hover {
+    padding-right: 35px;
+    /* Slight movement on hover RTL */
+    padding-left: 0;
 }
 
 /* Responsive */

@@ -85,7 +85,10 @@
 }
 
 .policies-list {
-    padding-left: 25px;
+    padding-left: 0;
+    /* Remove default padding */
+    list-style: none;
+    /* No numbers */
     line-height: 1.8;
     color: #333;
 }
@@ -93,6 +96,31 @@
 .policies-list li {
     margin-bottom: 12px;
     font-size: 0.95rem;
+    position: relative;
+    padding-left: 30px;
+    /* Space for arrow */
+}
+
+/* Arrow Bullet */
+.policies-list li::before {
+    content: "➤";
+    /* Arrow symbol */
+    position: absolute;
+    left: 0;
+    top: 2px;
+    color: #27569b;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* Hover effect */
+.policies-list li:hover {
+    background-color: rgba(39, 86, 155, 0.05);
+    /* Light blue tint */
+    border-radius: 6px;
+    padding-left: 35px;
+    /* Slight shift on hover */
+    transition: all 0.2s ease;
 }
 
 .acknowledgement-text {

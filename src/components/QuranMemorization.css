@@ -133,8 +133,8 @@
     }
 
     .header-program-logo {
-        height: 140px;
-        /* 1x bigger */
+        height: 91px;
+        /* Increased by 0.3x from 70px */
         width: auto;
         margin: 0 !important;
     }
@@ -143,6 +143,8 @@
         height: 100px;
         width: auto;
         margin: 0 !important;
+        margin-right: 20px !important;
+        /* Pushes it slightly left, away from edge */
     }
 }
 
