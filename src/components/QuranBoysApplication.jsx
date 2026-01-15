@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import "./QuranBoysApplication.css";
 import emailjs from '@emailjs/browser';
+import StatusModal from './StatusModal';
 import jsPDF from "jspdf";
 import logo from "../assets/logo.png";
 
@@ -55,7 +56,7 @@ function QuranBoysApplication() {
         const addLine = (label, value, x = leftCol) => {
             doc.setFont("helvetica", "bold");
             doc.setFontSize(10);
-            doc.text(`${label}:`, x, yPos);
+            doc.text(`${label}: `, x, yPos);
             doc.setFont("helvetica", "normal");
             doc.text(String(value || ""), x + doc.getTextWidth(`${label}: `) + 2, yPos);
         };
@@ -427,15 +428,12 @@ function QuranBoysApplication() {
                             </div>
                         </div>
 
-                        {/* Status Message Display */}
-                        {status.message && (
-                            <div className={`alert mt-4 ${status.type === 'success' ? 'alert-success' :
-                                    status.type === 'error' ? 'alert-danger' :
-                                        'alert-warning'
-                                }`} role="alert">
-                                {status.message}
-                            </div>
-                        )}
+                        {/* Status Modal */}
+                        <StatusModal
+                            show={!!status.message}
+                            status={status}
+                            onClose={() => setStatus({ type: '', message: '' })}
+                        />
 
                         <div className="text-center mt-4">
                             <button type="submit" className="btn btn-primary btn-submit">

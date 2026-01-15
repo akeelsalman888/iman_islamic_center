@@ -4,6 +4,7 @@ import jsPDF from "jspdf";
 import logo from "../assets/logo.png";
 import "./MarriageCertificate.css";
 import emailjs from '@emailjs/browser';
+import StatusModal from './StatusModal';
 
 function MarriageCertificate() {
     const { t } = useLanguage();
@@ -790,15 +791,12 @@ function MarriageCertificate() {
                                                 </div>
                                             )}
 
-                                            {/* Status Message Display */}
-                                            {status.message && (
-                                                <div className={`alert mt-4 ${status.type === 'success' ? 'alert-success' :
-                                                        status.type === 'error' ? 'alert-danger' :
-                                                            'alert-warning'
-                                                    }`} role="alert">
-                                                    {status.message}
-                                                </div>
-                                            )}
+                                            {/* Status Modal */}
+                                            <StatusModal
+                                                show={!!status.message}
+                                                status={status}
+                                                onClose={() => setStatus({ type: '', message: '' })}
+                                            />
 
                                             <div className="d-flex justify-content-between mt-5">
                                                 <button

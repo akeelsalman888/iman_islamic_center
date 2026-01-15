@@ -1,0 +1,143 @@
+.status-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease;
+}
+
+.status-modal-content {
+    background: white;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transform: translateY(0);
+    animation: slideUp 0.3s ease;
+}
+
+.status-modal-content.rtl {
+    direction: rtl;
+    text-align: right;
+}
+
+.status-modal-header {
+    padding: 2rem 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.status-modal-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.status-modal-icon.success {
+    color: #28a745;
+}
+
+.status-modal-icon.error {
+    color: #dc3545;
+}
+
+.status-modal-icon.spin {
+    color: #39569b;
+    animation: spin 1s linear infinite;
+}
+
+.status-modal-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.status-modal-body {
+    padding: 0.5rem 2rem 2rem;
+    text-align: center;
+}
+
+.status-modal-body p {
+    margin: 0;
+    color: #666;
+    line-height: 1.5;
+    font-size: 1rem;
+}
+
+.status-modal-footer {
+    padding: 0 1.5rem 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.status-modal-footer .btn {
+    padding: 0.75rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.status-modal-footer .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: white;
+}
+
+.status-modal-footer .btn-success:hover {
+    background-color: #218838;
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+}
+
+.status-modal-footer .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+}
+
+.status-modal-footer .btn-danger:hover {
+    background-color: #c82333;
+    box-shadow: 0 4px 10px rgba(220, 53, 69, 0.3);
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
