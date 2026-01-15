@@ -133,6 +133,15 @@ function QuranBoysApplication() {
         const templateId = import.meta.env.VITE_EMAILJS_QURAN_TEMPLATE_ID;
         const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
+        if (!serviceId || !templateId || !publicKey) {
+            console.error('EmailJS Environment Variables Missing:', { serviceId, templateId, publicKey });
+            alert('System Error: Email configuration is missing. If you just added the .env file, please restart your development server.');
+            generatePDF();
+            return;
+        }
+
+        emailjs.init(publicKey);
+
         const templateParams = {
             studentName: formData.studentName,
             parentName: formData.guardianName,

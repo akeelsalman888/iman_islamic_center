@@ -250,11 +250,20 @@ function MarriageCertificate() {
             window.scrollTo(0, 0);
         } else {
             // 1. Send Confirmation Email via EmailJS FIRST
-            // We do this first because on some mobile browsers, the PDF download (doc.save)
-            // can initiate a navigation/context change that cancels pending network requests.
             const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
             const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
             const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+            if (!serviceId || !templateId || !publicKey) {
+                console.error('EmailJS Environment Variables Missing:', { serviceId, templateId, publicKey });
+                alert('System Error: Email configuration is missing. If you just added the .env file, please restart your development server (Ctrl+C then npm run dev).');
+                // Download PDF anyway so user doesn't lose data
+                generatePDF();
+                return;
+            }
+
+            // Explicitly initialize with public key
+            emailjs.init(publicKey);
 
             // Prepare template parameters
             const templateParams = {
