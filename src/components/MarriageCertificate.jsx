@@ -243,16 +243,15 @@ function MarriageCertificate() {
         doc.save("Marriage_Certificate_Application.pdf");
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (step === 1) {
             setStep(2);
             window.scrollTo(0, 0);
         } else {
-            // 1. Generate and download PDF
-            generatePDF();
-
-            // 2. Send Confirmation Email via EmailJS
+            // 1. Send Confirmation Email via EmailJS FIRST
+            // We do this first because on some mobile browsers, the PDF download (doc.save)
+            // can initiate a navigation/context change that cancels pending network requests.
             const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
             const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
             const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
@@ -270,15 +269,17 @@ function MarriageCertificate() {
                 nikaahDate: formData.nikaahDate
             };
 
-            emailjs.send(serviceId, templateId, templateParams, publicKey)
-                .then((response) => {
-                    console.log('Email sent successfully!', response.status, response.text);
-                    alert(`Application Success! PDF downloaded and confirmation email sent to ${formData.email}`);
-                })
-                .catch((err) => {
-                    console.error('Failed to send email:', err);
-                    alert('Application Success! PDF downloaded, but failed to send confirmation email. Error: ' + JSON.stringify(err));
-                });
+            try {
+                const response = await emailjs.send(serviceId, templateId, templateParams, publicKey);
+                console.log('Email sent successfully!', response.status, response.text);
+                alert(`Application Success! Confirmation email sent to ${formData.email}. Downloading PDF...`);
+            } catch (err) {
+                console.error('Failed to send email:', err);
+                alert('Application Success! Failed to send confirmation email, but downloading PDF. Error: ' + JSON.stringify(err));
+            } finally {
+                // 2. Generate and download PDF regardless of email success
+                generatePDF();
+            }
         }
     };
 
