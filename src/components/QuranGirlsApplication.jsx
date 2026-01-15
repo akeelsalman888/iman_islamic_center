@@ -128,17 +128,10 @@ function QuranGirlsApplication() {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // 1. Generate PDF
-        try {
-            generatePDF();
-        } catch (error) {
-            console.error("PDF Generation Error", error);
-        }
-
-        // 2. EmailJS Configuration
+        // 1. EmailJS Configuration
         const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
         const templateId = import.meta.env.VITE_EMAILJS_QURAN_TEMPLATE_ID;
         const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
@@ -151,15 +144,21 @@ function QuranGirlsApplication() {
             to_email: formData.email
         };
 
-        emailjs.send(serviceId, templateId, templateParams, publicKey)
-            .then((response) => {
-                console.log('Email sent successfully!', response.status, response.text);
-                alert(`Application Success! PDF downloaded and confirmation email sent to ${formData.email}`);
-            })
-            .catch((err) => {
-                console.error('Failed to send email:', err);
-                alert('Application submitted and PDF downloaded, but failed to send confirmation email. Error: ' + JSON.stringify(err));
-            });
+        try {
+            const response = await emailjs.send(serviceId, templateId, templateParams, publicKey);
+            console.log('Email sent successfully!', response.status, response.text);
+            alert(`Application Success! Confirmation email sent to ${formData.email}. Downloading PDF...`);
+        } catch (err) {
+            console.error('Failed to send email:', err);
+            alert('Application submitted, but failed to send confirmation email. Downloading PDF... Error: ' + JSON.stringify(err));
+        } finally {
+            // 2. Generate PDF regardless of email success
+            try {
+                generatePDF();
+            } catch (error) {
+                console.error("PDF Generation Error", error);
+            }
+        }
     };
 
     return (
