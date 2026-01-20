@@ -130,12 +130,11 @@ export const translations = {
             send: "Send Message",
             // Values (Always English)
             phoneValue: "(402) 730-3883",
-            emailValue: "info@imanislamic.org",
+            emailValue: "info@iman-islam.org",
             addressValue: "901 w dawes avenue, Lincoln, NE"
         },
         marriageCertificate: {
             title: "Official Marriage Certificate",
-            subtitle: "Please fill out all required information accurately",
             groomInfo: "Groom's Information",
             brideInfo: "Bride's Information",
             signatures: "Signatures",
@@ -160,6 +159,7 @@ export const translations = {
             imamLicenseId: "Imam License ID",
             dowryAmount: "Amount of Dowry",
             nikaahDate: "Date of Nikaah",
+            allFieldsRequired: "All fields are required",
             submitButton: "Submit Application",
             nextButton: "Next",
             backButton: "Back",
@@ -481,12 +481,11 @@ export const translations = {
             send: "إرسال الرسالة",
             // Values (Always English per request)
             phoneValue: "(402) 730-3883",
-            emailValue: "info@imanislamic.org",
+            emailValue: "info@iman-islam.org",
             addressValue: "901 w dawes avenue, Lincoln, NE"
         },
         marriageCertificate: {
             title: "شهادة الزواج الرسمية",
-            subtitle: "يرجى ملء جميع المعلومات المطلوبة بدقة",
             groomInfo: "معلومات العريس",
             brideInfo: "معلومات العروس",
             signatures: "التوقيعات",
@@ -511,6 +510,7 @@ export const translations = {
             imamLicenseId: "رقم هوية الإمام",
             dowryAmount: "مبلغ المهر",
             nikaahDate: "تاريخ النكاح",
+            allFieldsRequired: "جميع الحقول مطلوبة",
             submitButton: "إرسال الطلب",
             nextButton: "التالي",
             backButton: "رجوع",

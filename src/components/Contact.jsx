@@ -36,7 +36,7 @@ function Contact() {
                                         </div>
                                         <div>
                                             <label>{t('contact.emailUs')}</label>
-                                            <p>info@imanislamiccenter.org</p>
+                                            <p><a href="mailto:info@iman-islam.org" className="text-decoration-none" style={{ color: 'inherit' }}>info@iman-islam.org</a></p>
                                         </div>
                                     </div>
                                     <div className="info-item">

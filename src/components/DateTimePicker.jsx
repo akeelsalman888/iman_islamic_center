@@ -1,20 +1,50 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './DateTimePicker.css';
 import { FaCalendarAlt, FaClock } from 'react-icons/fa';
 
-export const DatePicker = ({ value, onChange, label, required = false, minDate = null, name = 'date' }) => {
+export const DatePicker = ({ value, onChange, onBlur, label, required = false, minDate = null, maxDate = null, name = 'date', error = null }) => {
     const [showPicker, setShowPicker] = useState(false);
     const [selectedDate, setSelectedDate] = useState(value || '');
-    const [currentMonth, setCurrentMonth] = useState(new Date());
+    const [currentMonth, setCurrentMonth] = useState(value ? new Date(value) : new Date());
+    const pickerRef = useRef(null);
 
     useEffect(() => {
-        if (value) setSelectedDate(value);
-    }, [value]);
+        if (value) {
+            setSelectedDate(value);
+            // Only update current month if the picker is not open or if it's the first load
+            // This prevents jumping around if value changes externally while picking
+            if (!showPicker) {
+                setCurrentMonth(new Date(value + 'T00:00:00'));
+            }
+        }
+    }, [value, showPicker]);
+
+    // Handle clicking outside to close picker
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (pickerRef.current && !pickerRef.current.contains(event.target)) {
+                if (showPicker) {
+                    setShowPicker(false);
+                    // Trigger onBlur when closing picker if needed
+                    if (onBlur) onBlur({ target: { name, value: selectedDate } });
+                }
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [showPicker, onBlur, name, selectedDate]);
 
     const months = [
         'January', 'February', 'March', 'April', 'May', 'June',
         'July', 'August', 'September', 'October', 'November', 'December'
     ];
+
+    // Generate years range: 1900 to Current Year + 10
+    const currentYear = new Date().getFullYear();
+    const years = Array.from({ length: 150 }, (_, i) => currentYear + 10 - i);
 
     const getDaysInMonth = (date) => {
         const year = date.getFullYear();
@@ -32,11 +62,15 @@ export const DatePicker = ({ value, onChange, label, required = false, minDate =
         setSelectedDate(dateString);
         onChange({ target: { name: name, value: dateString } });
         setShowPicker(false);
+        // We trigger onBlur manually here or let the parent handle it via effect?
+        // Usually clicking a date finishes the interaction.
+        if (onBlur) onBlur({ target: { name, value: dateString } });
     };
 
     const formatDisplayDate = (dateStr) => {
-        if (!dateStr) return 'Select Date';
+        if (!dateStr) return '';
         const date = new Date(dateStr + 'T00:00:00');
+        if (isNaN(date.getTime())) return ''; // Invalid date
         return date.toLocaleDateString('en-US', {
             weekday: 'short',
             year: 'numeric',
@@ -46,12 +80,31 @@ export const DatePicker = ({ value, onChange, label, required = false, minDate =
     };
 
     const isDateDisabled = (day) => {
-        if (!minDate) return false;
         const year = currentMonth.getFullYear();
         const month = currentMonth.getMonth();
         const checkDate = new Date(year, month, day);
-        const min = new Date(minDate);
-        return checkDate < min;
+
+        if (minDate) {
+            const min = new Date(minDate + 'T00:00:00');
+            if (checkDate < min) return true;
+        }
+
+        if (maxDate) {
+            const max = new Date(maxDate + 'T00:00:00');
+            if (checkDate > max) return true;
+        }
+
+        return false;
+    };
+
+    const handleMonthChange = (e) => {
+        const newMonth = parseInt(e.target.value);
+        setCurrentMonth(new Date(currentMonth.getFullYear(), newMonth, 1));
+    };
+
+    const handleYearChange = (e) => {
+        const newYear = parseInt(e.target.value);
+        setCurrentMonth(new Date(newYear, currentMonth.getMonth(), 1));
     };
 
     const { firstDay, daysInMonth } = getDaysInMonth(currentMonth);
@@ -62,11 +115,8 @@ export const DatePicker = ({ value, onChange, label, required = false, minDate =
     }
 
     for (let day = 1; day <= daysInMonth; day++) {
-        const isSelected = selectedDate &&
-            new Date(selectedDate + 'T00:00:00').getDate() === day &&
-            new Date(selectedDate + 'T00:00:00').getMonth() === currentMonth.getMonth() &&
-            new Date(selectedDate + 'T00:00:00').getFullYear() === currentMonth.getFullYear();
-
+        const dateStr = `${currentMonth.getFullYear()}-${String(currentMonth.getMonth() + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        const isSelected = selectedDate === dateStr;
         const isDisabled = isDateDisabled(day);
 
         days.push(
@@ -81,68 +131,91 @@ export const DatePicker = ({ value, onChange, label, required = false, minDate =
     }
 
     return (
-        <div className="datetime-picker-wrapper">
-            {label && <label className="form-label">{label} {required && <span className="text-danger">*</span>}</label>}
-            <div className="datetime-input-group" onClick={() => setShowPicker(!showPicker)}>
+        <div className="datetime-picker-wrapper" ref={pickerRef}>
+            {label && <label className="form-label">{label}</label>}
+            <div className={`datetime-input-group`} onClick={() => setShowPicker(!showPicker)}>
                 <FaCalendarAlt className="datetime-icon" />
                 <input
                     type="text"
-                    className="form-control datetime-display"
+                    className={`form-control datetime-display ${error ? 'is-invalid' : ''}`}
                     value={formatDisplayDate(selectedDate)}
                     readOnly
+                    placeholder="Select Date"
                     required={required}
+                    onBlur={(e) => {
+                        // This onBlur triggers when focus leaves the INPUT.
+                        // But since it's readOnly and we use a custom picker, 
+                        // we mainly rely on explicit blur handling or click-outside.
+                        // However, for tab navigation, this is useful.
+                    }}
                 />
             </div>
 
             {showPicker && (
-                <>
-                    <div className="datetime-overlay" onClick={() => setShowPicker(false)}></div>
-                    <div className="datetime-picker-dropdown">
-                        <div className="calendar-header">
-                            <button
-                                type="button"
-                                onClick={() => setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1))}
-                                className="calendar-nav-btn"
+                <div className="datetime-picker-dropdown">
+                    <div className="calendar-header">
+                        <button
+                            type="button"
+                            onClick={() => setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1))}
+                            className="calendar-nav-btn"
+                        >
+                            ‹
+                        </button>
+
+                        <div className="d-flex gap-2 align-items-center justify-content-center flex-grow-1">
+                            <select
+                                className="form-select form-select-sm p-1"
+                                style={{ width: 'auto', fontWeight: 'bold', fontSize: '0.9rem' }}
+                                value={currentMonth.getMonth()}
+                                onChange={handleMonthChange}
+                                onClick={(e) => e.stopPropagation()}
                             >
-                                ‹
-                            </button>
-                            <span className="calendar-month-year">
-                                {months[currentMonth.getMonth()]} {currentMonth.getFullYear()}
-                            </span>
-                            <button
-                                type="button"
-                                onClick={() => setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1))}
-                                className="calendar-nav-btn"
+                                {months.map((m, i) => <option key={i} value={i}>{m}</option>)}
+                            </select>
+                            <select
+                                className="form-select form-select-sm p-1"
+                                style={{ width: 'auto', fontWeight: 'bold', fontSize: '0.9rem' }}
+                                value={currentMonth.getFullYear()}
+                                onChange={handleYearChange}
+                                onClick={(e) => e.stopPropagation()}
                             >
-                                ›
-                            </button>
+                                {years.map(y => <option key={y} value={y}>{y}</option>)}
+                            </select>
                         </div>
-                        <div className="calendar-weekdays">
-                            {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-                                <div key={day} className="calendar-weekday">{day}</div>
-                            ))}
-                        </div>
-                        <div className="calendar-days">
-                            {days}
-                        </div>
+
+                        <button
+                            type="button"
+                            onClick={() => setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1))}
+                            className="calendar-nav-btn"
+                        >
+                            ›
+                        </button>
                     </div>
-                </>
+                    <div className="calendar-weekdays">
+                        {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
+                            <div key={day} className="calendar-weekday">{day}</div>
+                        ))}
+                    </div>
+                    <div className="calendar-days">
+                        {days}
+                    </div>
+                </div>
             )}
         </div>
     );
 };
 
-export const TimePicker = ({ value, onChange, label, required = false, name = 'time' }) => {
+export const TimePicker = ({ value, onChange, onBlur, label, required = false, name = 'time', error = null }) => {
     const [showPicker, setShowPicker] = useState(false);
     const [selectedTime, setSelectedTime] = useState(value || '');
     const [hour, setHour] = useState('12');
     const [minute, setMinute] = useState('00');
     const [period, setPeriod] = useState('PM');
+    const pickerRef = useRef(null);
 
     useEffect(() => {
         if (value) {
             setSelectedTime(value);
-            // Parse 24-hour format to 12-hour
             const [h, m] = value.split(':');
             const hourNum = parseInt(h);
             setHour(String(hourNum > 12 ? hourNum - 12 : hourNum === 0 ? 12 : hourNum).padStart(2, '0'));
@@ -150,6 +223,23 @@ export const TimePicker = ({ value, onChange, label, required = false, name = 't
             setPeriod(hourNum >= 12 ? 'PM' : 'AM');
         }
     }, [value]);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (pickerRef.current && !pickerRef.current.contains(event.target)) {
+                if (showPicker) {
+                    setShowPicker(false);
+                    if (onBlur) onBlur({ target: { name, value: selectedTime } });
+                }
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [showPicker, onBlur, name, selectedTime]);
+
 
     const handleTimeSelect = () => {
         let hour24 = parseInt(hour);
@@ -160,10 +250,11 @@ export const TimePicker = ({ value, onChange, label, required = false, name = 't
         setSelectedTime(timeString);
         onChange({ target: { name: name, value: timeString } });
         setShowPicker(false);
+        if (onBlur) onBlur({ target: { name, value: timeString } });
     };
 
     const formatDisplayTime = (timeStr) => {
-        if (!timeStr) return 'Select Time';
+        if (!timeStr) return '';
         const [h, m] = timeStr.split(':');
         const hourNum = parseInt(h);
         const hour12 = hourNum > 12 ? hourNum - 12 : hourNum === 0 ? 12 : hourNum;
@@ -175,76 +266,74 @@ export const TimePicker = ({ value, onChange, label, required = false, name = 't
     const minutes = Array.from({ length: 12 }, (_, i) => String(i * 5).padStart(2, '0'));
 
     return (
-        <div className="datetime-picker-wrapper">
-            {label && <label className="form-label">{label} {required && <span className="text-danger">*</span>}</label>}
+        <div className="datetime-picker-wrapper" ref={pickerRef}>
+            {label && <label className="form-label">{label}</label>}
             <div className="datetime-input-group" onClick={() => setShowPicker(!showPicker)}>
                 <FaClock className="datetime-icon" />
                 <input
                     type="text"
-                    className="form-control datetime-display"
+                    className={`form-control datetime-display ${error ? 'is-invalid' : ''}`}
                     value={formatDisplayTime(selectedTime)}
                     readOnly
+                    placeholder="Select Time"
                     required={required}
                 />
             </div>
 
             {showPicker && (
-                <>
-                    <div className="datetime-overlay" onClick={() => setShowPicker(false)}></div>
-                    <div className="datetime-picker-dropdown time-picker">
-                        <div className="time-picker-header">Select Time</div>
-                        <div className="time-picker-body">
-                            <div className="time-column">
-                                <div className="time-column-label">Hour</div>
-                                <div className="time-scroll">
-                                    {hours.map(h => (
-                                        <div
-                                            key={h}
-                                            className={`time-option ${hour === h ? 'selected' : ''}`}
-                                            onClick={() => setHour(h)}
-                                        >
-                                            {h}
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                            <div className="time-separator">:</div>
-                            <div className="time-column">
-                                <div className="time-column-label">Minute</div>
-                                <div className="time-scroll">
-                                    {minutes.map(m => (
-                                        <div
-                                            key={m}
-                                            className={`time-option ${minute === m ? 'selected' : ''}`}
-                                            onClick={() => setMinute(m)}
-                                        >
-                                            {m}
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                            <div className="time-column">
-                                <div className="time-column-label">Period</div>
-                                <div className="time-scroll">
-                                    {['AM', 'PM'].map(p => (
-                                        <div
-                                            key={p}
-                                            className={`time-option ${period === p ? 'selected' : ''}`}
-                                            onClick={() => setPeriod(p)}
-                                        >
-                                            {p}
-                                        </div>
-                                    ))}
-                                </div>
+                <div className="datetime-picker-dropdown time-picker">
+                    <div className="time-picker-header">Select Time</div>
+                    <div className="time-picker-body">
+                        <div className="time-column">
+                            <div className="time-column-label">Hour</div>
+                            <div className="time-scroll">
+                                {hours.map(h => (
+                                    <div
+                                        key={h}
+                                        className={`time-option ${hour === h ? 'selected' : ''}`}
+                                        onClick={() => setHour(h)}
+                                    >
+                                        {h}
+                                    </div>
+                                ))}
                             </div>
                         </div>
-                        <div className="time-picker-footer">
-                            <button type="button" className="btn btn-primary btn-sm" onClick={handleTimeSelect}>
-                                Confirm
-                            </button>
+                        <div className="time-separator">:</div>
+                        <div className="time-column">
+                            <div className="time-column-label">Minute</div>
+                            <div className="time-scroll">
+                                {minutes.map(m => (
+                                    <div
+                                        key={m}
+                                        className={`time-option ${minute === m ? 'selected' : ''}`}
+                                        onClick={() => setMinute(m)}
+                                    >
+                                        {m}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="time-column">
+                            <div className="time-column-label">Period</div>
+                            <div className="time-scroll">
+                                {['AM', 'PM'].map(p => (
+                                    <div
+                                        key={p}
+                                        className={`time-option ${period === p ? 'selected' : ''}`}
+                                        onClick={() => setPeriod(p)}
+                                    >
+                                        {p}
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
-                </>
+                    <div className="time-picker-footer">
+                        <button type="button" className="btn btn-primary btn-sm" onClick={handleTimeSelect}>
+                            Confirm
+                        </button>
+                    </div>
+                </div>
             )}
         </div>
     );
