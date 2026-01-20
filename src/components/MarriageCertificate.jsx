@@ -42,9 +42,143 @@ function MarriageCertificate() {
         email: ""
     });
     const [status, setStatus] = useState({ type: '', message: '' });
+    const [errors, setErrors] = useState({});
+
+    // Validation helper functions
+    const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const isValidDate = (dateStr) => !isNaN(Date.parse(dateStr));
+    const isPastDate = (dateStr) => new Date(dateStr) < new Date(new Date().toDateString());
+    const isFutureOrTodayDate = (dateStr) => new Date(dateStr) >= new Date(new Date().toDateString());
+
+    // Validate Step 1 fields
+    const validateStep1 = () => {
+        const newErrors = {};
+
+        // Groom validation
+        if (!formData.groomName.trim()) newErrors.groomName = 'Groom name is required';
+        if (!formData.groomLicenseId.trim()) newErrors.groomLicenseId = 'License ID is required';
+        if (!formData.groomLicenseState) newErrors.groomLicenseState = 'State is required';
+        if (!formData.groomBirthPlace.trim()) newErrors.groomBirthPlace = 'Place of birth is required';
+        if (!formData.groomBirthDate) {
+            newErrors.groomBirthDate = 'Date of birth is required';
+        } else if (!isPastDate(formData.groomBirthDate)) {
+            newErrors.groomBirthDate = 'Date of birth must be in the past';
+        }
+
+        // Bride validation
+        if (!formData.brideName.trim()) newErrors.brideName = 'Bride name is required';
+        if (!formData.brideLicenseId.trim()) newErrors.brideLicenseId = 'License ID is required';
+        if (!formData.brideLicenseState) newErrors.brideLicenseState = 'State is required';
+        if (!formData.brideBirthPlace.trim()) newErrors.brideBirthPlace = 'Place of birth is required';
+        if (!formData.brideBirthDate) {
+            newErrors.brideBirthDate = 'Date of birth is required';
+        } else if (!isPastDate(formData.brideBirthDate)) {
+            newErrors.brideBirthDate = 'Date of birth must be in the past';
+        }
+
+        // Signatures validation
+        if (!formData.groomSignature.trim()) newErrors.groomSignature = 'Groom signature is required';
+        if (!formData.groomSignatureDate) newErrors.groomSignatureDate = 'Date is required';
+        if (!formData.brideRepSignature.trim()) newErrors.brideRepSignature = 'Representative signature is required';
+        if (!formData.brideRepSignatureDate) newErrors.brideRepSignatureDate = 'Date is required';
+        if (!formData.brideRepLicenseId.trim()) newErrors.brideRepLicenseId = 'License ID is required';
+        if (!formData.brideRepLicenseState) newErrors.brideRepLicenseState = 'State is required';
+
+        // Witnesses validation
+        if (!formData.witness1Name.trim()) newErrors.witness1Name = 'Witness 1 name is required';
+        if (!formData.witness1Id.trim()) newErrors.witness1Id = 'Witness 1 ID is required';
+        if (!formData.witness2Name.trim()) newErrors.witness2Name = 'Witness 2 name is required';
+        if (!formData.witness2Id.trim()) newErrors.witness2Id = 'Witness 2 ID is required';
+
+        // Dowry validation
+        if (!formData.dowryAmount.trim()) newErrors.dowryAmount = 'Dowry amount is required';
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    // Validate Step 2 fields
+    const validateStep2 = () => {
+        const newErrors = {};
+
+        if (!formData.appointmentDate) {
+            newErrors.appointmentDate = 'Appointment date is required';
+        } else if (!isFutureOrTodayDate(formData.appointmentDate)) {
+            newErrors.appointmentDate = 'Appointment date cannot be in the past';
+        }
+
+        if (!formData.appointmentTime) newErrors.appointmentTime = 'Appointment time is required';
+
+        if (!formData.email.trim()) {
+            newErrors.email = 'Email is required';
+        } else if (!isValidEmail(formData.email)) {
+            newErrors.email = 'Please enter a valid email address';
+        }
+
+        if (formData.appointmentLocation === 'home' && !formData.homeAddress.trim()) {
+            newErrors.homeAddress = 'Home address is required for home visits';
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    // Real-time validation for a single field
+    const validateField = (name, value) => {
+        let error = '';
+
+        // Required field check
+        const requiredFields = [
+            'groomName', 'groomLicenseId', 'groomLicenseState', 'groomBirthPlace', 'groomBirthDate',
+            'brideName', 'brideLicenseId', 'brideLicenseState', 'brideBirthPlace', 'brideBirthDate',
+            'groomSignature', 'groomSignatureDate', 'brideRepSignature', 'brideRepSignatureDate',
+            'brideRepLicenseId', 'brideRepLicenseState',
+            'witness1Name', 'witness1Id', 'witness2Name', 'witness2Id',
+            'dowryAmount', 'appointmentDate', 'appointmentTime', 'email'
+        ];
+
+        if (requiredFields.includes(name) && (!value || !value.toString().trim())) {
+            error = 'This field is required';
+        }
+
+        // Date of birth validation (must be in the past)
+        if ((name === 'groomBirthDate' || name === 'brideBirthDate') && value) {
+            if (!isPastDate(value)) {
+                error = 'Date of birth must be in the past';
+            }
+        }
+
+        // Appointment date validation (must be today or future)
+        if (name === 'appointmentDate' && value) {
+            if (!isFutureOrTodayDate(value)) {
+                error = 'Appointment date cannot be in the past';
+            }
+        }
+
+        // Email validation
+        if (name === 'email' && value && !isValidEmail(value)) {
+            error = 'Please enter a valid email address';
+        }
+
+        return error;
+    };
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+
+        // Real-time validation
+        const error = validateField(name, value);
+        setErrors({ ...errors, [name]: error });
+    };
+
+    // Validate on blur (when user leaves the field)
+    const handleBlur = (e) => {
+        const { name, value } = e.target;
+        const error = validateField(name, value);
+        if (error) {
+            setErrors({ ...errors, [name]: error });
+        }
     };
 
     const generatePDF = () => {
@@ -121,7 +255,7 @@ function MarriageCertificate() {
 
         doc.setFontSize(8);
         doc.text("901 W Dawes Avenue, Lincoln, NE 68521", pageWidth / 2, 33, { align: "center" });
-        doc.text("Phone: (402) 730-3883 | Email: info@imanislamic.org", pageWidth / 2, 39, { align: "center" });
+        doc.text("Phone: (402) 730-3883 | Email: info@iman-islam.org", pageWidth / 2, 39, { align: "center" });
 
         doc.setTextColor(0, 0, 0);
         yPos = 53;
@@ -250,7 +384,7 @@ function MarriageCertificate() {
 
         doc.setFont("helvetica", "bold");
         doc.setFontSize(8);
-        doc.text("For questions, contact: (402) 730-3883 | info@imanislamic.org", pageWidth / 2, yPos + 15, { align: "center" });
+        doc.text("For questions, contact: (402) 730-3883 | info@iman-islam.org", pageWidth / 2, yPos + 15, { align: "center" });
 
         // Save the PDF
         doc.save("Marriage_Certificate_Application.pdf");
@@ -259,9 +393,21 @@ function MarriageCertificate() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (step === 1) {
+            // Validate Step 1 before moving to Step 2
+            if (!validateStep1()) {
+                setStatus({ type: 'error', message: 'Please fix the errors highlighted below.' });
+                return;
+            }
+            setErrors({});
+            setStatus({ type: '', message: '' });
             setStep(2);
             window.scrollTo(0, 0);
         } else {
+            // Validate Step 2 before submitting
+            if (!validateStep2()) {
+                setStatus({ type: 'error', message: 'Please fix the errors highlighted below.' });
+                return;
+            }
             setStatus({ type: 'info', message: 'Processing application...' });
 
             // 1. Send Confirmation Email via EmailJS FIRST
@@ -341,485 +487,537 @@ function MarriageCertificate() {
                                     <h2 className="marriage-title">
                                         {step === 1 ? t('marriageCertificate.title') : t('marriageCertificate.appointmentTitle')}
                                     </h2>
-                                    <p className="marriage-subtitle">
-                                        {step === 1 ? t('marriageCertificate.subtitle') : t('marriageCertificate.appointmentNote')}
-                                    </p>
+                                    {step === 2 && t('marriageCertificate.appointmentNote') && (
+                                        <p className="marriage-subtitle">{t('marriageCertificate.appointmentNote')}</p>
+                                    )}
+                                    <div className="required-note mb-4">
+                                        <span>{t('marriageCertificate.allFieldsRequired')}</span>
+                                    </div>
                                 </div>
 
                                 <form onSubmit={handleSubmit}>
-                                    {step === 1 && (
-                                        <>
-                                            {/* Groom's Information */}
-                                            <h4 className="section-heading">{t('marriageCertificate.groomInfo')}</h4>
+                                    <div className="form-body">
+                                        {step === 1 && (
+                                            <>
+                                                {/* Groom's Information */}
+                                                <h4 className="section-heading">{t('marriageCertificate.groomInfo')}</h4>
 
-                                            <div className="row mb-3">
-                                                <div className="col-md-12">
-                                                    <label className="form-label">{t('marriageCertificate.groomName')}</label>
+                                                <div className="row mb-3">
+                                                    <div className="col-md-12">
+                                                        <label className="form-label">{t('marriageCertificate.groomName')}</label>
+                                                        <input
+                                                            type="text"
+                                                            name="groomName"
+                                                            className={`form-control ${errors.groomName ? 'is-invalid' : ''}`}
+                                                            required
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            value={formData.groomName}
+                                                        />
+                                                        {errors.groomName && <span className="error-message">{errors.groomName}</span>}
+                                                    </div>
+                                                </div>
+
+                                                <div className="row mb-3">
+                                                    <div className="col-md-6">
+                                                        <label className="form-label">{t('marriageCertificate.licenseId')}</label>
+                                                        <input
+                                                            type="text"
+                                                            name="groomLicenseId"
+                                                            className={`form-control ${errors.groomLicenseId ? 'is-invalid' : ''}`}
+                                                            required
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            value={formData.groomLicenseId}
+                                                        />
+                                                        {errors.groomLicenseId && <span className="error-message">{errors.groomLicenseId}</span>}
+                                                    </div>
+                                                    <div className="col-md-6">
+                                                        <label className="form-label">{t('marriageCertificate.state')}</label>
+                                                        <select
+                                                            name="groomLicenseState"
+                                                            className={`form-control ${errors.groomLicenseState ? 'is-invalid' : ''}`}
+                                                            required
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            value={formData.groomLicenseState}
+                                                        >
+                                                            <option value="">{t('marriageCertificate.selectState')}</option>
+                                                            {usStates.map(state => (
+                                                                <option key={state} value={state}>{state}</option>
+                                                            ))}
+                                                        </select>
+                                                        {errors.groomLicenseState && <span className="error-message">{errors.groomLicenseState}</span>}
+                                                    </div>
+                                                </div>
+
+                                                <div className="row mb-3">
+                                                    <div className="col-md-6">
+                                                        <label className="form-label">{t('marriageCertificate.placeOfBirth')}</label>
+                                                        <input
+                                                            type="text"
+                                                            name="groomBirthPlace"
+                                                            className={`form-control ${errors.groomBirthPlace ? 'is-invalid' : ''}`}
+                                                            required
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            value={formData.groomBirthPlace}
+                                                        />
+                                                        {errors.groomBirthPlace && <span className="error-message">{errors.groomBirthPlace}</span>}
+                                                    </div>
+                                                    <div className="col-md-6">
+                                                        <DatePicker
+                                                            label={t('marriageCertificate.dateOfBirth')}
+                                                            name="groomBirthDate"
+                                                            value={formData.groomBirthDate}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            required
+                                                            maxDate={new Date().toISOString().split('T')[0]}
+                                                            error={errors.groomBirthDate}
+                                                        />
+                                                        {errors.groomBirthDate && <span className="error-message">{errors.groomBirthDate}</span>}
+                                                    </div>
+                                                </div>
+
+                                                {/* Bride's Information */}
+                                                <h4 className="section-heading">{t('marriageCertificate.brideInfo')}</h4>
+
+                                                <div className="row mb-3">
+                                                    <div className="col-md-12">
+                                                        <label className="form-label">{t('marriageCertificate.brideName')}</label>
+                                                        <input
+                                                            type="text"
+                                                            name="brideName"
+                                                            className={`form-control ${errors.brideName ? 'is-invalid' : ''}`}
+                                                            required
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            value={formData.brideName}
+                                                        />
+                                                        {errors.brideName && <span className="error-message">{errors.brideName}</span>}
+                                                    </div>
+                                                </div>
+
+                                                <div className="row mb-3">
+                                                    <div className="col-md-6">
+                                                        <label className="form-label">{t('marriageCertificate.licenseId')}</label>
+                                                        <input
+                                                            type="text"
+                                                            name="brideLicenseId"
+                                                            className={`form-control ${errors.brideLicenseId ? 'is-invalid' : ''}`}
+                                                            required
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            value={formData.brideLicenseId}
+                                                        />
+                                                        {errors.brideLicenseId && <span className="error-message">{errors.brideLicenseId}</span>}
+                                                    </div>
+                                                    <div className="col-md-6">
+                                                        <label className="form-label">{t('marriageCertificate.state')}</label>
+                                                        <select
+                                                            name="brideLicenseState"
+                                                            className={`form-control ${errors.brideLicenseState ? 'is-invalid' : ''}`}
+                                                            required
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            value={formData.brideLicenseState}
+                                                        >
+                                                            <option value="">{t('marriageCertificate.selectState')}</option>
+                                                            {usStates.map(state => (
+                                                                <option key={state} value={state}>{state}</option>
+                                                            ))}
+                                                        </select>
+                                                        {errors.brideLicenseState && <span className="error-message">{errors.brideLicenseState}</span>}
+                                                    </div>
+                                                </div>
+
+                                                <div className="row mb-3">
+                                                    <div className="col-md-6">
+                                                        <label className="form-label">{t('marriageCertificate.placeOfBirth')}</label>
+                                                        <input
+                                                            type="text"
+                                                            name="brideBirthPlace"
+                                                            className={`form-control ${errors.brideBirthPlace ? 'is-invalid' : ''}`}
+                                                            required
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            value={formData.brideBirthPlace}
+                                                        />
+                                                        {errors.brideBirthPlace && <span className="error-message">{errors.brideBirthPlace}</span>}
+                                                    </div>
+                                                    <div className="col-md-6">
+                                                        <DatePicker
+                                                            label={t('marriageCertificate.dateOfBirth')}
+                                                            name="brideBirthDate"
+                                                            value={formData.brideBirthDate}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            required
+                                                            maxDate={new Date().toISOString().split('T')[0]}
+                                                            error={errors.brideBirthDate}
+                                                        />
+                                                        {errors.brideBirthDate && <span className="error-message">{errors.brideBirthDate}</span>}
+                                                    </div>
+                                                </div>
+
+                                                {/* Signatures */}
+                                                <h4 className="section-heading">{t('marriageCertificate.signatures')}</h4>
+
+                                                <div className="row mb-3">
+                                                    <div className="col-md-6">
+                                                        <label className="form-label">{t('marriageCertificate.groomSignature')}</label>
+                                                        <input
+                                                            type="text"
+                                                            name="groomSignature"
+                                                            className={`form-control ${errors.groomSignature ? 'is-invalid' : ''}`}
+                                                            required
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            value={formData.groomSignature}
+                                                        />
+                                                        {errors.groomSignature && <span className="error-message">{errors.groomSignature}</span>}
+                                                    </div>
+                                                    <div className="col-md-6">
+                                                        <DatePicker
+                                                            label={t('marriageCertificate.date')}
+                                                            name="groomSignatureDate"
+                                                            value={formData.groomSignatureDate}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            required
+                                                            error={errors.groomSignatureDate}
+                                                        />
+                                                        {errors.groomSignatureDate && <span className="error-message">{errors.groomSignatureDate}</span>}
+                                                    </div>
+                                                </div>
+
+                                                <div className="row mb-3">
+                                                    <div className="col-md-4">
+                                                        <label className="form-label">{t('marriageCertificate.brideRepSignature')}</label>
+                                                        <input
+                                                            type="text"
+                                                            name="brideRepSignature"
+                                                            className={`form-control ${errors.brideRepSignature ? 'is-invalid' : ''}`}
+                                                            required
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            value={formData.brideRepSignature}
+                                                        />
+                                                        {errors.brideRepSignature && <span className="error-message">{errors.brideRepSignature}</span>}
+                                                    </div>
+                                                    <div className="col-md-2">
+                                                        <DatePicker
+                                                            label={t('marriageCertificate.date')}
+                                                            name="brideRepSignatureDate"
+                                                            value={formData.brideRepSignatureDate}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            required
+                                                            error={errors.brideRepSignatureDate}
+                                                        />
+                                                    </div>
+                                                    <div className="col-md-3">
+                                                        <label className="form-label">{t('marriageCertificate.licenseIdLabel')}</label>
+                                                        <input
+                                                            type="text"
+                                                            name="brideRepLicenseId"
+                                                            className={`form-control ${errors.brideRepLicenseId ? 'is-invalid' : ''}`}
+                                                            required
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            value={formData.brideRepLicenseId}
+                                                        />
+                                                        {errors.brideRepLicenseId && <span className="error-message">{errors.brideRepLicenseId}</span>}
+                                                    </div>
+                                                    <div className="col-md-3">
+                                                        <label className="form-label">{t('marriageCertificate.state')}</label>
+                                                        <select
+                                                            name="brideRepLicenseState"
+                                                            className={`form-control ${errors.brideRepLicenseState ? 'is-invalid' : ''}`}
+                                                            required
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            value={formData.brideRepLicenseState}
+                                                        >
+                                                            <option value="">{t('marriageCertificate.selectState')}</option>
+                                                            {usStates.map(state => (
+                                                                <option key={state} value={state}>{state}</option>
+                                                            ))}
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                {/* Witnesses */}
+                                                <h4 className="section-heading">{t('marriageCertificate.witnesses')}</h4>
+
+                                                <div className="row mb-3">
+                                                    <div className="col-md-6">
+                                                        <label className="form-label">{t('marriageCertificate.witness1Name')}</label>
+                                                        <input
+                                                            type="text"
+                                                            name="witness1Name"
+                                                            className={`form-control ${errors.witness1Name ? 'is-invalid' : ''}`}
+                                                            required
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            value={formData.witness1Name}
+                                                        />
+                                                        {errors.witness1Name && <span className="error-message">{errors.witness1Name}</span>}
+                                                    </div>
+                                                    <div className="col-md-6">
+                                                        <label className="form-label">{t('marriageCertificate.licenseIdLabel')}</label>
+                                                        <input
+                                                            type="text"
+                                                            name="witness1Id"
+                                                            className={`form-control ${errors.witness1Id ? 'is-invalid' : ''}`}
+                                                            required
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            value={formData.witness1Id}
+                                                        />
+                                                        {errors.witness1Id && <span className="error-message">{errors.witness1Id}</span>}
+                                                    </div>
+                                                </div>
+
+                                                <div className="row mb-3">
+                                                    <div className="col-md-6">
+                                                        <label className="form-label">{t('marriageCertificate.witness2Name')}</label>
+                                                        <input
+                                                            type="text"
+                                                            name="witness2Name"
+                                                            className={`form-control ${errors.witness2Name ? 'is-invalid' : ''}`}
+                                                            required
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            value={formData.witness2Name}
+                                                        />
+                                                        {errors.witness2Name && <span className="error-message">{errors.witness2Name}</span>}
+                                                    </div>
+                                                    <div className="col-md-6">
+                                                        <label className="form-label">{t('marriageCertificate.licenseIdLabel')}</label>
+                                                        <input
+                                                            type="text"
+                                                            name="witness2Id"
+                                                            className={`form-control ${errors.witness2Id ? 'is-invalid' : ''}`}
+                                                            required
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            value={formData.witness2Id}
+                                                        />
+                                                        {errors.witness2Id && <span className="error-message">{errors.witness2Id}</span>}
+                                                    </div>
+                                                </div>
+
+                                                {/* IIC Officials */}
+                                                <h4 className="section-heading">{t('marriageCertificate.iicOfficials')}</h4>
+
+                                                <div className="row mb-3">
+                                                    <div className="col-md-6">
+                                                        <label className="form-label">{t('marriageCertificate.authorizedPerson')}</label>
+                                                        <input
+                                                            type="text"
+                                                            name="authorizedPersonName"
+                                                            className="form-control"
+                                                            style={{ backgroundColor: "#e9ecef" }}
+                                                            required
+                                                            readOnly
+                                                            value={formData.authorizedPersonName}
+                                                        />
+                                                    </div>
+                                                    <div className="col-md-6">
+                                                        <label className="form-label">{t('marriageCertificate.licenseIdLabel')}</label>
+                                                        <input
+                                                            type="text"
+                                                            name="authorizedPersonId"
+                                                            className="form-control"
+                                                            style={{ backgroundColor: "#e9ecef" }}
+                                                            required
+                                                            readOnly
+                                                            value={formData.authorizedPersonId}
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <div className="row mb-3">
+                                                    <div className="col-md-6">
+                                                        <label className="form-label">{t('marriageCertificate.imamName')}</label>
+                                                        <input
+                                                            type="text"
+                                                            name="imamName"
+                                                            className="form-control"
+                                                            style={{ backgroundColor: "#e9ecef" }}
+                                                            readOnly
+                                                        />
+                                                    </div>
+                                                    <div className="col-md-6">
+                                                        <label className="form-label">{t('marriageCertificate.imamLicenseId')}</label>
+                                                        <input
+                                                            type="text"
+                                                            name="imamLicenseId"
+                                                            className="form-control"
+                                                            style={{ backgroundColor: "#e9ecef" }}
+                                                            readOnly
+                                                        />
+                                                    </div>
+                                                </div>
+
+
+
+                                                {/* Additional Information */}
+                                                <h4 className="section-heading">{t('marriageCertificate.additionalInfo')}</h4>
+
+                                                <div className="row mb-3">
+                                                    <div className="col-md-6">
+                                                        <label className="form-label">{t('marriageCertificate.dowryAmount')}</label>
+                                                        <input
+                                                            type="text"
+                                                            name="dowryAmount"
+                                                            className={`form-control ${errors.dowryAmount ? 'is-invalid' : ''}`}
+                                                            required
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            value={formData.dowryAmount}
+                                                        />
+                                                        {errors.dowryAmount && <span className="error-message">{errors.dowryAmount}</span>}
+                                                    </div>
+                                                    <div className="col-md-6">
+                                                        <label className="form-label">Date of Marriage</label>
+                                                        <input
+                                                            type="text"
+                                                            name="nikaahDate"
+                                                            className="form-control"
+                                                            style={{ backgroundColor: "#e9ecef" }}
+                                                            readOnly
+                                                            value={formData.nikaahDate}
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <div className="btn-container">
+                                                    <button type="submit" className="apply-btn">
+                                                        {t('marriageCertificate.nextButton')}
+                                                    </button>
+                                                </div>
+                                            </>
+                                        )}
+
+                                        {step === 2 && (
+                                            <div className="appointment-section">
+                                                <div className="row mb-4">
+                                                    <div className="col-md-6 mb-3">
+                                                        <DatePicker
+                                                            label={t('marriageCertificate.appointmentDate')}
+                                                            value={formData.appointmentDate}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            name="appointmentDate"
+                                                            required
+                                                            minDate={new Date().toISOString().split('T')[0]}
+                                                            error={errors.appointmentDate}
+                                                        />
+                                                        {errors.appointmentDate && <span className="error-message">{errors.appointmentDate}</span>}
+                                                    </div>
+                                                    <div className="col-md-6 mb-3">
+                                                        <TimePicker
+                                                            label={t('marriageCertificate.appointmentTime')}
+                                                            value={formData.appointmentTime}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            name="appointmentTime"
+                                                            required
+                                                            error={errors.appointmentTime}
+                                                        />
+                                                        {errors.appointmentTime && <span className="error-message">{errors.appointmentTime}</span>}
+                                                    </div>
+                                                </div>
+
+                                                <div className="mb-4">
+                                                    <label className="form-label">Contact Email (for confirmation)</label>
                                                     <input
-                                                        type="text"
-                                                        name="groomName"
-                                                        className="form-control"
+                                                        type="email"
+                                                        name="email"
+                                                        className={`form-control form-control-lg ${errors.email ? 'is-invalid' : ''}`}
                                                         required
                                                         onChange={handleChange}
-                                                        value={formData.groomName}
+                                                        onBlur={handleBlur}
+                                                        value={formData.email}
+                                                        placeholder="example@email.com"
                                                     />
+                                                    {errors.email && <span className="error-message">{errors.email}</span>}
                                                 </div>
-                                            </div>
 
-                                            <div className="row mb-3">
-                                                <div className="col-md-6">
-                                                    <label className="form-label">{t('marriageCertificate.licenseId')}</label>
-                                                    <input
-                                                        type="text"
-                                                        name="groomLicenseId"
-                                                        className="form-control"
-                                                        required
-                                                        onChange={handleChange}
-                                                        value={formData.groomLicenseId}
-                                                    />
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <label className="form-label">{t('marriageCertificate.state')}</label>
-                                                    <select
-                                                        name="groomLicenseState"
-                                                        className="form-control"
-                                                        required
-                                                        onChange={handleChange}
-                                                        value={formData.groomLicenseState}
-                                                    >
-                                                        <option value="">{t('marriageCertificate.selectState')}</option>
-                                                        {usStates.map(state => (
-                                                            <option key={state} value={state}>{state}</option>
-                                                        ))}
-                                                    </select>
-                                                </div>
-                                            </div>
+                                                <div className="mb-4">
+                                                    <label className="form-label d-block mb-3">{t('marriageCertificate.appointmentLocation')}</label>
 
-                                            <div className="row mb-3">
-                                                <div className="col-md-6">
-                                                    <label className="form-label">{t('marriageCertificate.placeOfBirth')}</label>
-                                                    <input
-                                                        type="text"
-                                                        name="groomBirthPlace"
-                                                        className="form-control"
-                                                        required
-                                                        onChange={handleChange}
-                                                        value={formData.groomBirthPlace}
-                                                    />
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <label className="form-label">{t('marriageCertificate.dateOfBirth')}</label>
-                                                    <input
-                                                        type="date"
-                                                        name="groomBirthDate"
-                                                        className="form-control"
-                                                        required
-                                                        onChange={handleChange}
-                                                        value={formData.groomBirthDate}
-                                                    />
-                                                </div>
-                                            </div>
+                                                    <div className="form-check mb-2">
+                                                        <input
+                                                            className="form-check-input"
+                                                            type="radio"
+                                                            name="appointmentLocation"
+                                                            id="locationMasjid"
+                                                            value="masjid"
+                                                            checked={formData.appointmentLocation === 'masjid'}
+                                                            onChange={handleChange}
+                                                        />
+                                                        <label className="form-check-label" htmlFor="locationMasjid">
+                                                            {t('marriageCertificate.masjidOption')}
+                                                        </label>
+                                                    </div>
 
-                                            {/* Bride's Information */}
-                                            <h4 className="section-heading">{t('marriageCertificate.brideInfo')}</h4>
+                                                    <div className="form-check">
+                                                        <input
+                                                            className="form-check-input"
+                                                            type="radio"
+                                                            name="appointmentLocation"
+                                                            id="locationHome"
+                                                            value="home"
+                                                            checked={formData.appointmentLocation === 'home'}
+                                                            onChange={handleChange}
+                                                        />
+                                                        <label className="form-check-label" htmlFor="locationHome">
+                                                            {t('marriageCertificate.homeOption')}
+                                                        </label>
+                                                    </div>
+                                                </div>
 
-                                            <div className="row mb-3">
-                                                <div className="col-md-12">
-                                                    <label className="form-label">{t('marriageCertificate.brideName')}</label>
-                                                    <input
-                                                        type="text"
-                                                        name="brideName"
-                                                        className="form-control"
-                                                        required
-                                                        onChange={handleChange}
-                                                        value={formData.brideName}
-                                                    />
-                                                </div>
-                                            </div>
+                                                {formData.appointmentLocation === 'home' && (
+                                                    <div className="mb-4 fade-in">
+                                                        <label className="form-label">{t('marriageCertificate.homeAddressLabel')}</label>
+                                                        <input
+                                                            type="text"
+                                                            name="homeAddress"
+                                                            className={`form-control form-control-lg ${errors.homeAddress ? 'is-invalid' : ''}`}
+                                                            required={formData.appointmentLocation === 'home'}
+                                                            onChange={handleChange}
+                                                            value={formData.homeAddress}
+                                                        />
+                                                        {errors.homeAddress && <span className="error-message">{errors.homeAddress}</span>}
+                                                    </div>
+                                                )}
 
-                                            <div className="row mb-3">
-                                                <div className="col-md-6">
-                                                    <label className="form-label">{t('marriageCertificate.licenseId')}</label>
-                                                    <input
-                                                        type="text"
-                                                        name="brideLicenseId"
-                                                        className="form-control"
-                                                        required
-                                                        onChange={handleChange}
-                                                        value={formData.brideLicenseId}
-                                                    />
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <label className="form-label">{t('marriageCertificate.state')}</label>
-                                                    <select
-                                                        name="brideLicenseState"
-                                                        className="form-control"
-                                                        required
-                                                        onChange={handleChange}
-                                                        value={formData.brideLicenseState}
-                                                    >
-                                                        <option value="">{t('marriageCertificate.selectState')}</option>
-                                                        {usStates.map(state => (
-                                                            <option key={state} value={state}>{state}</option>
-                                                        ))}
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div className="row mb-3">
-                                                <div className="col-md-6">
-                                                    <label className="form-label">{t('marriageCertificate.placeOfBirth')}</label>
-                                                    <input
-                                                        type="text"
-                                                        name="brideBirthPlace"
-                                                        className="form-control"
-                                                        required
-                                                        onChange={handleChange}
-                                                        value={formData.brideBirthPlace}
-                                                    />
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <label className="form-label">{t('marriageCertificate.dateOfBirth')}</label>
-                                                    <input
-                                                        type="date"
-                                                        name="brideBirthDate"
-                                                        className="form-control"
-                                                        required
-                                                        onChange={handleChange}
-                                                        value={formData.brideBirthDate}
-                                                    />
-                                                </div>
-                                            </div>
-
-                                            {/* Signatures */}
-                                            <h4 className="section-heading">{t('marriageCertificate.signatures')}</h4>
-
-                                            <div className="row mb-3">
-                                                <div className="col-md-6">
-                                                    <label className="form-label">{t('marriageCertificate.groomSignature')}</label>
-                                                    <input
-                                                        type="text"
-                                                        name="groomSignature"
-                                                        className="form-control"
-                                                        required
-                                                        onChange={handleChange}
-                                                        value={formData.groomSignature}
-                                                    />
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <label className="form-label">{t('marriageCertificate.date')}</label>
-                                                    <input
-                                                        type="date"
-                                                        name="groomSignatureDate"
-                                                        className="form-control"
-                                                        required
-                                                        onChange={handleChange}
-                                                        value={formData.groomSignatureDate}
-                                                    />
-                                                </div>
-                                            </div>
-
-                                            <div className="row mb-3">
-                                                <div className="col-md-4">
-                                                    <label className="form-label">{t('marriageCertificate.brideRepSignature')}</label>
-                                                    <input
-                                                        type="text"
-                                                        name="brideRepSignature"
-                                                        className="form-control"
-                                                        required
-                                                        onChange={handleChange}
-                                                        value={formData.brideRepSignature}
-                                                    />
-                                                </div>
-                                                <div className="col-md-2">
-                                                    <label className="form-label">{t('marriageCertificate.date')}</label>
-                                                    <input
-                                                        type="date"
-                                                        name="brideRepSignatureDate"
-                                                        className="form-control"
-                                                        required
-                                                        onChange={handleChange}
-                                                        value={formData.brideRepSignatureDate}
-                                                    />
-                                                </div>
-                                                <div className="col-md-3">
-                                                    <label className="form-label">{t('marriageCertificate.licenseIdLabel')}</label>
-                                                    <input
-                                                        type="text"
-                                                        name="brideRepLicenseId"
-                                                        className="form-control"
-                                                        required
-                                                        onChange={handleChange}
-                                                        value={formData.brideRepLicenseId}
-                                                    />
-                                                </div>
-                                                <div className="col-md-3">
-                                                    <label className="form-label">{t('marriageCertificate.state')}</label>
-                                                    <select
-                                                        name="brideRepLicenseState"
-                                                        className="form-control"
-                                                        required
-                                                        onChange={handleChange}
-                                                        value={formData.brideRepLicenseState}
-                                                    >
-                                                        <option value="">{t('marriageCertificate.selectState')}</option>
-                                                        {usStates.map(state => (
-                                                            <option key={state} value={state}>{state}</option>
-                                                        ))}
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            {/* Witnesses */}
-                                            <h4 className="section-heading">{t('marriageCertificate.witnesses')}</h4>
-
-                                            <div className="row mb-3">
-                                                <div className="col-md-6">
-                                                    <label className="form-label">{t('marriageCertificate.witness1Name')}</label>
-                                                    <input
-                                                        type="text"
-                                                        name="witness1Name"
-                                                        className="form-control"
-                                                        required
-                                                        onChange={handleChange}
-                                                        value={formData.witness1Name}
-                                                    />
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <label className="form-label">{t('marriageCertificate.licenseIdLabel')}</label>
-                                                    <input
-                                                        type="text"
-                                                        name="witness1Id"
-                                                        className="form-control"
-                                                        required
-                                                        onChange={handleChange}
-                                                        value={formData.witness1Id}
-                                                    />
-                                                </div>
-                                            </div>
-
-                                            <div className="row mb-3">
-                                                <div className="col-md-6">
-                                                    <label className="form-label">{t('marriageCertificate.witness2Name')}</label>
-                                                    <input
-                                                        type="text"
-                                                        name="witness2Name"
-                                                        className="form-control"
-                                                        required
-                                                        onChange={handleChange}
-                                                        value={formData.witness2Name}
-                                                    />
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <label className="form-label">{t('marriageCertificate.licenseIdLabel')}</label>
-                                                    <input
-                                                        type="text"
-                                                        name="witness2Id"
-                                                        className="form-control"
-                                                        required
-                                                        onChange={handleChange}
-                                                        value={formData.witness2Id}
-                                                    />
-                                                </div>
-                                            </div>
-
-                                            {/* IIC Officials */}
-                                            <h4 className="section-heading">{t('marriageCertificate.iicOfficials')}</h4>
-
-                                            <div className="row mb-3">
-                                                <div className="col-md-6">
-                                                    <label className="form-label">{t('marriageCertificate.authorizedPerson')}</label>
-                                                    <input
-                                                        type="text"
-                                                        name="authorizedPersonName"
-                                                        className="form-control"
-                                                        style={{ backgroundColor: "#e9ecef" }}
-                                                        required
-                                                        readOnly
-                                                        value={formData.authorizedPersonName}
-                                                    />
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <label className="form-label">{t('marriageCertificate.licenseIdLabel')}</label>
-                                                    <input
-                                                        type="text"
-                                                        name="authorizedPersonId"
-                                                        className="form-control"
-                                                        style={{ backgroundColor: "#e9ecef" }}
-                                                        required
-                                                        readOnly
-                                                        value={formData.authorizedPersonId}
-                                                    />
-                                                </div>
-                                            </div>
-
-                                            <div className="row mb-3">
-                                                <div className="col-md-6">
-                                                    <label className="form-label">{t('marriageCertificate.imamName')}</label>
-                                                    <input
-                                                        type="text"
-                                                        name="imamName"
-                                                        className="form-control"
-                                                        style={{ backgroundColor: "#e9ecef" }}
-                                                        readOnly
-                                                    />
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <label className="form-label">{t('marriageCertificate.imamLicenseId')}</label>
-                                                    <input
-                                                        type="text"
-                                                        name="imamLicenseId"
-                                                        className="form-control"
-                                                        style={{ backgroundColor: "#e9ecef" }}
-                                                        readOnly
-                                                    />
-                                                </div>
-                                            </div>
-
-
-
-                                            {/* Additional Information */}
-                                            <h4 className="section-heading">{t('marriageCertificate.additionalInfo')}</h4>
-
-                                            <div className="row mb-3">
-                                                <div className="col-md-6">
-                                                    <label className="form-label">{t('marriageCertificate.dowryAmount')}</label>
-                                                    <input
-                                                        type="text"
-                                                        name="dowryAmount"
-                                                        className="form-control"
-                                                        required
-                                                        onChange={handleChange}
-                                                        value={formData.dowryAmount}
-                                                    />
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <label className="form-label">Date of Marriage</label>
-                                                    <input
-                                                        type="text"
-                                                        name="nikaahDate"
-                                                        className="form-control"
-                                                        style={{ backgroundColor: "#e9ecef" }}
-                                                        readOnly
-                                                        value={formData.nikaahDate}
-                                                    />
-                                                </div>
-                                            </div>
-
-                                            <div className="text-center mt-4">
-                                                <button type="submit" className="btn btn-primary btn-lg">
-                                                    {t('marriageCertificate.nextButton')}
-                                                </button>
-                                            </div>
-                                        </>
-                                    )}
-
-                                    {step === 2 && (
-                                        <div className="appointment-section">
-                                            <div className="row mb-4">
-                                                <div className="col-md-6 mb-3">
-                                                    <DatePicker
-                                                        label={t('marriageCertificate.appointmentDate')}
-                                                        value={formData.appointmentDate}
-                                                        onChange={handleChange}
-                                                        name="appointmentDate"
-                                                        required
-                                                        minDate={new Date().toISOString().split('T')[0]}
-                                                    />
-                                                </div>
-                                                <div className="col-md-6 mb-3">
-                                                    <TimePicker
-                                                        label={t('marriageCertificate.appointmentTime')}
-                                                        value={formData.appointmentTime}
-                                                        onChange={handleChange}
-                                                        name="appointmentTime"
-                                                        required
-                                                    />
-                                                </div>
-                                            </div>
-
-                                            <div className="mb-4">
-                                                <label className="form-label">Contact Email (for confirmation)</label>
-                                                <input
-                                                    type="email"
-                                                    name="email"
-                                                    className="form-control form-control-lg"
-                                                    required
-                                                    onChange={handleChange}
-                                                    value={formData.email}
-                                                    placeholder="example@email.com"
+                                                {/* Status Modal */}
+                                                <StatusModal
+                                                    show={!!status.message}
+                                                    status={status}
+                                                    onClose={() => setStatus({ type: '', message: '' })}
                                                 />
-                                            </div>
 
-                                            <div className="mb-4">
-                                                <label className="form-label d-block mb-3">{t('marriageCertificate.appointmentLocation')}</label>
-
-                                                <div className="form-check mb-2">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="radio"
-                                                        name="appointmentLocation"
-                                                        id="locationMasjid"
-                                                        value="masjid"
-                                                        checked={formData.appointmentLocation === 'masjid'}
-                                                        onChange={handleChange}
-                                                    />
-                                                    <label className="form-check-label" htmlFor="locationMasjid">
-                                                        {t('marriageCertificate.masjidOption')}
-                                                    </label>
-                                                </div>
-
-                                                <div className="form-check">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="radio"
-                                                        name="appointmentLocation"
-                                                        id="locationHome"
-                                                        value="home"
-                                                        checked={formData.appointmentLocation === 'home'}
-                                                        onChange={handleChange}
-                                                    />
-                                                    <label className="form-check-label" htmlFor="locationHome">
-                                                        {t('marriageCertificate.homeOption')}
-                                                    </label>
+                                                <div className="btn-container">
+                                                    <button
+                                                        type="button"
+                                                        className="back-btn"
+                                                        onClick={handleBack}
+                                                    >
+                                                        {t('marriageCertificate.backButton')}
+                                                    </button>
+                                                    <button type="submit" className="apply-btn">
+                                                        {t('marriageCertificate.submitButton')}
+                                                    </button>
                                                 </div>
                                             </div>
-
-                                            {formData.appointmentLocation === 'home' && (
-                                                <div className="mb-4 fade-in">
-                                                    <label className="form-label">{t('marriageCertificate.homeAddressLabel')}</label>
-                                                    <input
-                                                        type="text"
-                                                        name="homeAddress"
-                                                        className="form-control form-control-lg"
-                                                        required={formData.appointmentLocation === 'home'}
-                                                        onChange={handleChange}
-                                                        value={formData.homeAddress}
-                                                    />
-                                                </div>
-                                            )}
-
-                                            {/* Status Modal */}
-                                            <StatusModal
-                                                show={!!status.message}
-                                                status={status}
-                                                onClose={() => setStatus({ type: '', message: '' })}
-                                            />
-
-                                            <div className="d-flex justify-content-between mt-5">
-                                                <button
-                                                    type="button"
-                                                    className="btn btn-outline-secondary btn-lg"
-                                                    onClick={handleBack}
-                                                >
-                                                    {t('marriageCertificate.backButton')}
-                                                </button>
-                                                <button type="submit" className="btn btn-primary btn-lg">
-                                                    {t('marriageCertificate.submitButton')}
-                                                </button>
-                                            </div>
-                                        </div>
-                                    )}
+                                        )}
+                                    </div>
                                 </form>
                             </div>
                         </div>
